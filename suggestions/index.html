@@ -11,11 +11,13 @@
       --forest-2: #244d3c;
       --gold: #c9a84c;
       --gold-pale: #f0e4c0;
+      --gold-ink:  #7d601f;
       --bg: #f2ede4;
       --surface: #faf7f2;
       --border: #ddd5c4;
+      --border-strong: #8b8377;
       --text: #1a1a18;
-      --muted: #7a7265;
+      --muted: #665e52;
       --accent: #3b6e56;
       --red: #b94040;
       --green: #2a6e47;
@@ -30,13 +32,45 @@
       min-height: 100vh;
     }
 
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute; left: 0; top: -100px; z-index: 200;
+      background: var(--forest); color: #fff;
+      padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 700;
+      border-radius: 0 0 6px 0;
+    }
+    .skip-link:focus { top: 0; }
+    .visually-hidden {
+      position: absolute !important; width: 1px; height: 1px;
+      margin: -1px; padding: 0; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--forest); outline-offset: 2px;
+    }
+    .topbar :focus-visible, .hero :focus-visible, footer :focus-visible {
+      outline-color: var(--gold-pale);
+    }
+    a, button, input, select, textarea, [id] { scroll-margin-top: 76px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     /* ── Top bar ── */
     .topbar {
       background: var(--forest);
       color: #fff;
       padding: 0 2rem;
-      height: 58px;
+      min-height: 58px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       border-bottom: 3px solid var(--gold);
@@ -101,7 +135,7 @@
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--gold-pale);
       margin-bottom: 0.75rem;
     }
 
@@ -116,7 +150,7 @@
 
     .hero p {
       font-size: 1rem;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.9);
       max-width: 520px;
       margin: 0 auto;
       line-height: 1.65;
@@ -148,7 +182,7 @@
       height: 24px;
       border-radius: 50%;
       background: var(--border);
-      color: var(--muted);
+      color: #4a443a;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -272,7 +306,7 @@
       gap: 0.3rem;
     }
 
-    .req { color: var(--gold); font-size: 0.9em; transition: opacity 0.2s; }
+    .req { color: var(--gold-ink); font-size: 0.9em; transition: opacity 0.2s; }
     .req.hidden { opacity: 0; pointer-events: none; }
 
     /* ── Anonymous toggle ── */
@@ -296,7 +330,7 @@
       width: 20px;
       height: 20px;
       border-radius: 5px;
-      border: 2px solid var(--border);
+      border: 2px solid var(--border-strong);
       background: #fff;
       display: flex;
       align-items: center;
@@ -307,8 +341,8 @@
     }
     .anon-toggle.checked .anon-box { background: var(--forest); border-color: var(--forest); }
 
-    .anon-label { font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.3; }
-    .anon-hint  { font-size: 0.78rem; color: var(--muted); font-style: italic; margin-top: 2px; line-height: 1.4; }
+    .anon-label { display: block; font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .anon-hint  { display: block; font-size: 0.78rem; color: var(--muted); font-style: italic; margin-top: 2px; line-height: 1.4; }
 
     .personal-field input,
     .personal-field select { transition: opacity 0.2s; }
@@ -320,7 +354,7 @@
       font-size: 0.95rem;
       color: var(--text);
       background: #fff;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid var(--border-strong);
       border-radius: 8px;
       padding: 0.65rem 0.9rem;
       width: 100%;
@@ -340,6 +374,23 @@
     }
 
     textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+
+    input::placeholder, textarea::placeholder { color: #6b6558; opacity: 1; }
+
+    .anon-input {
+      position: absolute; width: 1px; height: 1px;
+      margin: -1px; padding: 0; border: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
+    .anon-toggle:focus-within { outline: 3px solid var(--forest); outline-offset: 2px; }
+
+    .form-errors {
+      display: none; margin-bottom: 1.25rem; padding: 0.85rem 1rem;
+      border: 1.5px solid var(--red); border-radius: 8px;
+      background: #fdeaea; color: var(--red);
+      font-size: 0.85rem; font-weight: 600; line-height: 1.5;
+    }
+    .form-errors.show { display: block; }
 
     select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 4.5L11 1' stroke='%237a7265' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -435,7 +486,7 @@
 
     .btn-secondary {
       background: none;
-      border: 1.5px solid var(--border);
+      border: 1.5px solid var(--border-strong);
       color: var(--muted);
       border-radius: 8px;
       padding: 0.8rem 1.5rem;
@@ -532,7 +583,7 @@
       margin-top: 1px;
     }
 
-    .config-banner h4 {
+    .config-banner .config-banner-title {
       font-size: 0.88rem;
       font-weight: 700;
       color: var(--forest);
@@ -597,23 +648,24 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- Top bar -->
-<div class="topbar">
+<header class="topbar">
   <a href="/" class="topbar-logo" style="text-decoration:none;">Drew <span>SGA</span></a>
   <div class="topbar-divider"></div>
   <div class="topbar-sub">Student Concerns Electronic Hotline </div>
-  
-</div>
+</header>
 
 <!-- Hero -->
-<div class="hero">
+<section class="hero" aria-label="About this form">
   <div class="hero-eyebrow">Help make Drew a Better Place!</div>
   <h1>Submit a Concern or Idea!</h1>
-  <p>Give us your thoughts & we'll strive to make it right! </p>
-</div>
+  <p class="hero-sub">Give us your thoughts &amp; we'll strive to make it right! </p>
+</section>
 
 <!-- Steps -->
-<div class="steps-strip">
+<section class="steps-strip" aria-label="Progress">
   <div class="step active" id="step1">
     <div class="step-num">1</div> Fill out the form
   </div>
@@ -624,17 +676,17 @@
  <!-- div class="step-arrow"></div>
   <div class="step" id="step3">
     <div class="step-num">3</div> We'll follow up
-  </div>--> 
-</div>
+  </div>-->
+</section>
 
 <!-- Page -->
-<div class="page">
+<main class="page" id="main" tabindex="-1">
 
   <!-- Config banner -->
   <div class="config-banner" id="configBanner">
     <div class="config-banner-icon">⚙️</div>
     <div>
-      <h4>Google Sheets not connected yet</h4>
+      <p class="config-banner-title">Google Sheets not connected yet</p>
       <p>
         This form is running in <strong>demo mode</strong> — submissions won't be saved anywhere. To connect it:
         set <code>SHEET_URL</code> in the script to your Google Apps Script web app URL.<br/>
@@ -649,7 +701,7 @@
     <div id="formView">
       <div class="card-header">
         <div class="card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <div>
           <h2>New Suggestion / Concern Form</h2>
@@ -663,51 +715,55 @@
 
       <div class="card-body">
 
-        <div class="section-label">Your Information</div>
+        <h3 class="section-label">Your Information</h3>
+
+        <div id="formErrors" class="form-errors" role="alert" tabindex="-1"></div>
+
+        <form id="suggestionForm" novalidate>
 
         <!-- Anonymous toggle -->
-        <div class="anon-toggle" id="anonToggle" onclick="toggleAnonymous()">
-          <div class="anon-box" id="anonBox">
-            <svg id="anonCheck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <div class="anon-label">Submit anonymously</div>
-            <div class="anon-hint">Your name, email, and student ID will not be saved to the spreadsheet.</div>
-          </div>
-        </div>
-        <input type="checkbox" id="anonymous" style="display:none;" />
+        <label class="anon-toggle" id="anonToggle">
+          <input type="checkbox" id="anonymous" class="anon-input" aria-labelledby="anonLabel" aria-describedby="anonHint" />
+          <span class="anon-box" id="anonBox" aria-hidden="true">
+            <svg aria-hidden="true" focusable="false" id="anonCheck" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <span>
+            <span class="anon-label" id="anonLabel">Submit anonymously</span>
+            <span class="anon-hint" id="anonHint">Your name, email, and student ID will not be saved to the spreadsheet.</span>
+          </span>
+        </label>
 
         <div class="field-row">
           <div class="field personal-field" id="pf-firstName">
-            <label>First Name <span class="req" id="req-firstName">*</span></label>
-            <input type="text" id="firstName" placeholder="Jane" />
+            <label for="firstName">First Name <span class="req" id="req-firstName" aria-hidden="true">*</span></label>
+            <input type="text" id="firstName" name="firstName" placeholder="Jane" autocomplete="given-name" aria-required="true" aria-describedby="firstName-err" aria-invalid="false" />
             <span class="err-msg" id="firstName-err">Please enter your first name</span>
           </div>
           <div class="field personal-field" id="pf-lastName">
-            <label>Last Name <span class="req" id="req-lastName">*</span></label>
-            <input type="text" id="lastName" placeholder="Smith" />
+            <label for="lastName">Last Name <span class="req" id="req-lastName" aria-hidden="true">*</span></label>
+            <input type="text" id="lastName" name="lastName" placeholder="Smith" autocomplete="family-name" aria-required="true" aria-describedby="lastName-err" aria-invalid="false" />
             <span class="err-msg" id="lastName-err">Please enter your last name</span>
           </div>
         </div>
 
         <div class="field-row">
           <div class="field personal-field" id="pf-email">
-            <label>Drew Email <span class="req" id="req-email">*</span></label>
-            <input type="email" id="email" placeholder="jsmith@drew.edu" />
+            <label for="email">Drew Email <span class="req" id="req-email" aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="jsmith@drew.edu" autocomplete="email" aria-required="true" aria-describedby="email-err" aria-invalid="false" />
             <span class="err-msg" id="email-err">Enter a valid email address</span>
           </div>
           <div class="field personal-field" id="pf-studentId">
-            <label>Student ID</label>
-            <input type="text" id="studentId" placeholder="e.g. 00123456" />
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" name="studentId" placeholder="e.g. 00123456" />
           </div>
         </div>
 
-        <div class="section-label">Submission Details</div>
+        <h3 class="section-label">Submission Details</h3>
 
         <div class="field-row">
           <div class="field">
-            <label>Department / Area <span class="req">*</span></label>
-            <select id="department">
+            <label for="department">Department / Area <span class="req" aria-hidden="true">*</span></label>
+            <select id="department" name="department" aria-required="true" aria-describedby="department-err" aria-invalid="false">
               <option value="">— Select department —</option>
               <option>Admissions</option>
               <option>Financial Aid</option>
@@ -727,8 +783,8 @@
             <span class="err-msg" id="department-err">Please select a department</span>
           </div>
           <div class="field">
-            <label>Category</label>
-            <select id="category">
+            <label for="category">Category</label>
+            <select id="category" name="category">
               <option value="">— Select category —</option>
               <option>Account / Login</option>
               <option>Billing / Payment</option>
@@ -747,16 +803,16 @@
 
        <div class="field-row single">
           <div class="field">
-            <label>Subject <span class="req">*</span></label>
-            <input type="text" id="subject" placeholder="e.g. Can't access my financial aid portal / Suggestion for improving campus facilities" />
+            <label for="subject">Subject <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="subject" name="subject" aria-required="true" aria-describedby="subject-err" aria-invalid="false" placeholder="e.g. Can't access my financial aid portal / Suggestion for improving campus facilities" />
             <span class="err-msg" id="subject-err">Please enter a subject</span>
           </div>
         </div>
 
         <div class="field-row single">
           <div class="field">
-            <label>Full Description <span class="req">*</span></label>
-            <textarea id="description" placeholder="Describe your idea or issue in detail…"></textarea>
+            <label for="description">Full Description <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="description" name="description" aria-required="true" aria-describedby="description-err" aria-invalid="false" placeholder="Describe your idea or issue in detail…"></textarea>
             <span class="err-msg" id="description-err">Please describe your issue</span>
           </div>
         </div>
@@ -801,39 +857,41 @@
         </div>-->
 
         <div class="submit-row">
-          <button class="btn-primary" id="submitBtn" onclick="submitTicket()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <button class="btn-primary" id="submitBtn" type="submit">
+            <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Submit
           </button>
-          <button class="btn-secondary" onclick="clearForm()">Clear</button>
+          <button class="btn-secondary" type="button" onclick="clearForm()">Clear</button>
           <div class="privacy-note">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            <svg aria-hidden="true" focusable="false" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
             Submitted to Drew's Secure System
           </div>
         </div>
-
+        </form>
       </div>
     </div>
 
 
     <!-- Success view -->
-    <div id="successScreen">
+    <div id="successScreen" role="status" aria-live="polite" tabindex="-1">
       <div class="success-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2a6e47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2a6e47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2>Submission Submitted!</h2>
       <p>Your submission has been logged. Our team will actively work to make a change!</p>
       <div class="ticket-ref" id="successTicketId">—</div>
       <p style="font-size:0.8rem;">Save this ticket ID for your records.</p>
-      <button class="btn-primary" onclick="newTicket()">
+      <button class="btn-primary" type="button" onclick="newTicket()">
         Submit Another Suggestion
       </button>
     </div>
   </div>
-</div>
+
+<div id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+</main>
 
 <footer>Drew University SGA · Student Concerns Electronic Hotline · <span id="yr"></span></footer>
-<div class="toast" id="toast"></div>
 
 <script>
   // ──────────────────────────────────────────────────────────────────
@@ -853,7 +911,6 @@
    // ── Anonymous toggle ──────────────────────────────────────────────
    function toggleAnonymous() {
     const checkbox = document.getElementById('anonymous');
-    checkbox.checked = !checkbox.checked;
     const isAnon = checkbox.checked;
 
     // Update custom checkbox visuals
@@ -893,6 +950,11 @@
     if (!DEMO_MODE) {
       document.getElementById('configBanner').style.display = 'none';
     }
+    document.getElementById('anonymous').addEventListener('change', toggleAnonymous);
+    document.getElementById('suggestionForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitTicket();
+    });
     fetchNextId();
   });
  
@@ -926,8 +988,9 @@
   }
 
   function updateIdDisplay() {
-    const id = 'DU-' + String(nextId).padStart(5, '0');
-    document.getElementById('ticketIdDisplay').textContent = id;
+    const el = document.getElementById('ticketIdDisplay');
+    if (!el) return;
+    el.textContent = 'DU-' + String(nextId).padStart(5, '0');
   }
 
   // ── Validate ──────────────────────────────────────────────────────
@@ -935,21 +998,36 @@
 
   function validate() {
     let ok = true;
+    const bad = [];
     REQUIRED.forEach(id => {
       const el = document.getElementById(id);
       const err = document.getElementById(id + '-err');
       const empty = !el.value.trim();
       el.classList.toggle('err', empty);
+      el.setAttribute('aria-invalid', empty ? 'true' : 'false');
       if (err) err.classList.toggle('show', empty);
-      if (empty) ok = false;
+      if (empty) { ok = false; bad.push(el); }
     });
     // Email format
     const em = document.getElementById('email');
     const emErr = document.getElementById('email-err');
     if (em.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value)) {
       em.classList.add('err');
+      em.setAttribute('aria-invalid', 'true');
       emErr.classList.add('show');
       ok = false;
+      bad.push(em);
+    }
+    const box = document.getElementById('formErrors');
+    if (!ok) {
+      box.textContent = bad.length === 1
+        ? 'There is 1 field that needs attention. Check the highlighted field below.'
+        : `There are ${bad.length} fields that need attention. Check the highlighted fields below.`;
+      box.classList.add('show');
+      if (bad[0]) bad[0].focus();
+    } else {
+      box.textContent = '';
+      box.classList.remove('show');
     }
     return ok;
   }
@@ -963,7 +1041,7 @@
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending…`;
+    btn.innerHTML = `<svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Sending…`;
 
     const ticketId = 'DU-' + String(nextId).padStart(5, '0');
 
@@ -1001,7 +1079,7 @@
       } catch(e) {
         showToast('Submission failed: ' + e.message, true);
         btn.disabled = false;
-        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Ticket`;
+        btn.innerHTML = `<svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Ticket`;
       }
     }
   }
@@ -1064,6 +1142,7 @@
     document.getElementById('step2').querySelector('.step-num').textContent = '✓';
     const step3 = document.getElementById('step3');
     if (step3) { step3.classList.add('active'); }
+    document.getElementById('successScreen').focus();
     nextId++;
   }
 
@@ -1081,7 +1160,7 @@
     updateIdDisplay();
     const btn = document.getElementById('submitBtn');
     btn.disabled = false;
-    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Ticket`;
+    btn.innerHTML = `<svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Ticket`;
   }
 
   function clearForm() {
@@ -1097,6 +1176,10 @@
     const checkbox = document.getElementById('anonymous');
     if (checkbox.checked) toggleAnonymous(); // toggle off
     document.querySelectorAll('.personal-field').forEach(el => el.classList.remove('dimmed'));
+    document.querySelectorAll('[aria-invalid]').forEach(el => el.setAttribute('aria-invalid', 'false'));
+    const box = document.getElementById('formErrors');
+    box.textContent = '';
+    box.classList.remove('show');
     selectedPriority = 'Low';
   }
 

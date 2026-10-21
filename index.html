@@ -13,12 +13,13 @@
       --forest-3:  #2e5e49;
       --gold:      #c9a84c;
       --gold-pale: #f0e4c0;
+      --gold-ink:  #7d601f;
       --gold-dim:  rgba(201,168,76,0.15);
       --bg:        #f2ede4;
       --surface:   #faf7f2;
       --border:    #ddd5c4;
       --text:      #1a1a18;
-      --muted:     #7a7265;
+      --muted:     #665e52;
       --accent:    #3b6e56;
       --green:     #2a6e47;
       --red:       #b94040;
@@ -36,13 +37,44 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute; left: 0; top: -100px; z-index: 200;
+      background: var(--forest); color: #fff;
+      padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 700;
+      border-radius: 0 0 6px 0;
+    }
+    .skip-link:focus { top: 0; }
+    .visually-hidden {
+      position: absolute !important; width: 1px; height: 1px;
+      margin: -1px; padding: 0; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--forest); outline-offset: 2px;
+    }
+    .topbar :focus-visible, .hero :focus-visible, .cta-banner :focus-visible,
+    footer :focus-visible { outline-color: var(--gold-pale); }
+    a, button, input, select, textarea, [id] { scroll-margin-top: 76px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     /* ── TOP BAR ── */
     .topbar {
       background: var(--forest);
       color: #fff;
       padding: 0 2rem;
-      height: 58px;
+      min-height: 58px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       border-bottom: 3px solid var(--gold);
@@ -110,8 +142,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.6);
-      background:
+      background-color: rgba(0,0,0,0.62);
+      background-image:
         radial-gradient(ellipse at 75% -10%, rgba(201,168,76,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 10% 110%, rgba(59,110,86,0.3) 0%, transparent 50%);
       pointer-events: none;
@@ -121,7 +153,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.35);
+      background-color: rgba(0,0,0,0.25);
       background-image:
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
@@ -160,7 +192,7 @@
 
     .hero-sub {
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255,255,255,0.92);
       max-width: 500px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
@@ -208,6 +240,8 @@
       border-bottom: 1px solid var(--border);
       padding: 1.25rem 2rem;
       display: flex;
+      flex-wrap: wrap;
+      row-gap: 1rem;
       justify-content: center;
     }
 
@@ -364,8 +398,8 @@
     .meeting-date-box .month { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
     .meeting-date-box .day { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; line-height: 1; }
 
-    .meeting-info { flex: 1; }
-    .meeting-info h4 { font-size: 0.9rem; font-weight: 700; color: var(--forest); margin-bottom: 0.2rem; }
+    .meeting-info { flex: 1; min-width: 0; }
+    .meeting-info h3 { font-size: 0.9rem; font-weight: 700; color: var(--forest); margin-bottom: 0.2rem; }
     .meeting-info p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
     .meeting-badge {
@@ -474,7 +508,7 @@
     .cta-banner {
       background: linear-gradient(135deg, var(--forest) 0%, var(--forest-3) 100%);
       border-radius: 16px; padding: 3rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 2rem; margin-bottom: 3.5rem;
       position: relative; overflow: hidden;
     }
@@ -487,7 +521,7 @@
     .cta-text { position: relative; z-index: 1; }
     .cta-text h2 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0.6rem; line-height: 1.2; }
     .cta-text h2 em { color: var(--gold); font-style: italic; }
-    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.65); max-width: 400px; line-height: 1.65; }
+    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.82); max-width: 400px; line-height: 1.65; }
 
     .cta-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; position: relative; z-index: 1; }
 
@@ -525,7 +559,7 @@
 
     .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-col ul li a { font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul li a { display: inline-block; padding: 0.2rem 0; font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
     .footer-col ul li a:hover { color: #fff; }
 
     .footer-bottom {
@@ -534,7 +568,7 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: 0.73rem; flex-wrap: wrap; gap: 0.5rem;
     }
-    .footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-bottom a { color: rgba(255,255,255,0.75); transition: color 0.15s; }
     .footer-bottom a:hover { color: #fff; }
 
     /* ── ANIMATIONS ── */
@@ -663,6 +697,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- ─── CONFIGURATION ──────────────────────────────────────────────────
   Fill in these two values. Everything else is automatic.
 
@@ -691,23 +727,24 @@
   <a href="/" class="topbar-logo">Drew <span>SGA</span></a>
   <div class="topbar-divider"></div>
   <div class="topbar-sub">Student Government Association</div>
-  <nav>
+  <nav aria-label="Primary">
     <a href="/history">History</a>
     <a href="/members">Members</a>
     <a href="#initiatives">Initiatives    </a>
     <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
   </nav>
-  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()">
-    <div class="hamburger-icon">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"
+          aria-expanded="false" aria-controls="mobileNav" onclick="toggleMobileNav()">
+    <span class="hamburger-icon" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </span>
   </button>
 </header>
 
 <!-- MOBILE NAVIGATION -->
-<nav class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
   <a href="/history">History</a>
   <a href="/members">Members</a>
   <a href="/#initiatives">Initiatives</a>
@@ -715,7 +752,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" aria-label="Welcome">
   <div class="hero-inner">
     <div class="hero-eyebrow">
       
@@ -724,11 +761,11 @@
     <p class="hero-sub">The Student Government Association advocates for every Drew student - championing resources, fostering community, and building a campus we're proud of.</p>
     <div class="hero-actions">
       <a href="/suggestions" class="btn-hero-primary">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Submit a Suggestion/Concern
       </a>
       <a href="#meetings" class="btn-hero-secondary">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Meeting Schedule
       </a>
     </div>
@@ -736,22 +773,20 @@
 </section>
 
 <!-- STATS -->
-<div class="stats-strip">
+<section class="stats-strip" aria-label="SGA at a glance">
   <div class="stat-item"><div class="stat-num">1,600+</div><div class="stat-label">Students Represented</div></div>
   <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Elected Officials</div></div>
   <div class="stat-item"><div class="stat-num" id="initiativeCount">—</div><div class="stat-label">Active Initiatives</div></div>
   <div class="stat-item"><div class="stat-num">$10K</div><div class="stat-label">Annual Budget</div></div>
   <div class="stat-item"><div class="stat-num">1930s</div><div class="stat-label">Established</div></div>
-</div>
+</section>
 
 <!-- MAIN -->
-<main class="page">
+<main class="page" id="main" tabindex="-1">
 
   <!-- ANNOUNCEMENTS -->
-  <div id="announcements">
-    <div class="section-label">Latest Announcements</div>
-  </div>
-  <div class="announcements-grid" id="announcementsGrid">
+  <h2 class="section-label">Latest Announcements</h2>
+  <div class="announcements-grid" id="announcementsGrid" aria-busy="true">
     <div class="announcement-card featured" style="min-height:180px;">
       <div class="announcement-img" style="width:300px;"></div>
       <div class="announcement-content" style="gap:0.75rem;">
@@ -787,7 +822,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
         <div>
           <h2>Upcoming Meetings</h2>
@@ -806,41 +841,41 @@
     <div class="card">
       <div class="card-header">
         <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         </div>
         <div><h2>Quick Links</h2><p>Resources for Drew students</p></div>
       </div>
       <div class="card-body" style="padding: 0.5rem 1.5rem 1rem;">
         <div class="quick-links-list">
           <a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
             <div><div class="ql-label">Past Meeting Agendas</div><div class="ql-desc">From the current administration</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           <a href="https://docs.google.com/spreadsheets/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-            <div><div class="ql-label">Budget & Funding</div><div class="ql-desc">The current budget</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div><div class="ql-label">Budget &amp; Funding</div><div class="ql-desc">The current budget</div></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           <a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
             <div><div class="ql-label">SGA Constitution</div><div class="ql-desc">Our founding document</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           <a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
             <div><div class="ql-label">SGA Bylaws</div><div class="ql-desc">Our governing regulations</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           <a href="tel:9739368173" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
             <div><div class="ql-label">Student Concerns Hotline</div><div class="ql-desc">Leave your suggestion or concern on the go.</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           <a href="mailto:sga@drew.edu" class="quick-link-item">
-            <div class="ql-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div><div class="ql-label">Contact SGA</div><div class="ql-desc">sga@drew.edu</div></div>
-            <div class="ql-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
+            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
           </a>
           
         </div>
@@ -851,8 +886,8 @@
  
 
   <!-- INITIATIVES -->
-  <div id="initiatives"><div class="section-label">Current Initiatives</div></div>
-  <div class="initiatives-grid" id="initiativesGrid">
+  <h2 class="section-label" id="initiatives">Current Initiatives</h2>
+  <div class="initiatives-grid" id="initiativesGrid" aria-busy="true">
     <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
     <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
     <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
@@ -866,11 +901,11 @@
     </div>
     <div class="cta-actions">
       <a href="/suggestions" class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Submit a Suggestion/Concern
       </a>
       <a href="mailto:sga@drew.edu" class="btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Email Us Directly
       </a>
     </div>
@@ -887,7 +922,7 @@
     </div>
     <div class="footer-col">
       <h4>Governance</h4>
-      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget & Funding</a></li></ul>
+      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget &amp; Funding</a></li></ul>
     </div>
     <div class="footer-col">
       <h4>Students</h4>
@@ -904,6 +939,8 @@
   </div>
 </footer>
 
+<div id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></div>
+
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -911,14 +948,17 @@
   function toggleMobileNav() {
     const btn = document.getElementById('hamburgerBtn');
     const nav = document.getElementById('mobileNav');
-    btn.classList.toggle('active');
-    nav.classList.toggle('active');
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.classList.toggle('active', open);
+    nav.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
   }
 
   // Close mobile nav when a link is clicked
   document.querySelectorAll('.mobile-nav a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('hamburgerBtn').classList.remove('active');
+      document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
       document.getElementById('mobileNav').classList.remove('active');
     });
   });
@@ -926,7 +966,7 @@
   // ── VALIDATION ───────────────────────────────────────────────────────
   // if (SPREADSHEET_ID === 'YOUR_SPREADSHEET_ID_HERE' || API_KEY === '0') {
   //   const warn = `<div class="error-state" style="grid-column:1/-1">
-  //     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  //     <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
   //     Set SPREADSHEET_ID and API_KEY at the top of this file to load live data.
   //   </div>`;
   //   ['announcementsGrid','meetingsList','initiativesGrid','officersGrid','senatorsGrid']
@@ -961,18 +1001,18 @@
 
   // ── ICONS + UTILS ────────────────────────────────────────────────────
   const ICONS = [
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
   ];
 
   const ANN_ICONS = [
-    `<svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
-    `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
-    `<svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>`,
   ];
 
   const ANN_BG = [
@@ -989,8 +1029,8 @@
 
 
   function errorHtml(msg) {
-    return `<div class="error-state" style="grid-column:1/-1;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    return `<div class="error-state" role="alert" style="grid-column:1/-1;">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       ${escHtml(msg)}
     </div>`;
   }
@@ -1024,7 +1064,7 @@
     const items = rows.slice(0, 3);
     if (!items.length) {
       grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
         <p>No announcements at this time.</p>
       </div>`;
       return;
@@ -1039,7 +1079,7 @@
             .toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
         : '';
       const linkHtml = a.link
-        ? `<a href="${escHtml(a.link)}" class="ann-link" target="_blank">Read more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>`
+        ? `<a href="${escHtml(a.link)}" class="ann-link" target="_blank" rel="noopener" aria-label="Read more: ${escHtml(a.title)}">Read more <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>`
         : '';
       return `
         <div class="announcement-card${isFeatured ? ' featured' : ''}">
@@ -1062,7 +1102,7 @@
     const el = document.getElementById('meetingsList');
     if (!rows.length) {
       el.innerHTML = `<div class="empty-state">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <p>No upcoming meetings scheduled.</p>
       </div>`;
       return;
@@ -1085,7 +1125,7 @@
             <div class="day">${escHtml(String(day))}</div>
           </div>
           <div class="meeting-info">
-            <h4>${escHtml(m.title)}</h4>
+            <h3>${escHtml(m.title)}</h3>
             <p>${escHtml(m.location)}${timeLabel ? ' · ' + escHtml(timeLabel) : ''} · ${escHtml(dateLabel)}</p>
             <span class="meeting-badge ${isOpen ? 'open' : 'members'}">${isOpen ? 'Open to All Students' : 'Members Only'}</span>
           </div>
@@ -1098,7 +1138,7 @@
     const el = document.getElementById('initiativesGrid');
     if (!rows.length) {
       el.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <p>No active initiatives at this time.</p>
       </div>`;
       document.getElementById('initiativeCount').textContent = '0';
@@ -1154,7 +1194,11 @@
         errorHtml('Could not load initiatives: ' + initiatives.reason?.message);
     }
 
-  
+    ['announcementsGrid','meetingsList','initiativesGrid'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute('aria-busy', 'false');
+    });
+    document.getElementById('liveStatus').textContent = 'Announcements, meetings and initiatives updated.';
   }
   init();
 </script>

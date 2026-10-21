@@ -13,12 +13,13 @@
       --forest-3:  #2e5e49;
       --gold:      #c9a84c;
       --gold-pale: #f0e4c0;
+      --gold-ink:  #7d601f;
       --gold-dim:  rgba(201,168,76,0.15);
       --bg:        #f2ede4;
       --surface:   #faf7f2;
       --border:    #ddd5c4;
       --text:      #1a1a18;
-      --muted:     #7a7265;
+      --muted:     #665e52;
       --accent:    #3b6e56;
       --green:     #2a6e47;
       --red:       #b94040;
@@ -36,13 +37,44 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute; left: 0; top: -100px; z-index: 200;
+      background: var(--forest); color: #fff;
+      padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 700;
+      border-radius: 0 0 6px 0;
+    }
+    .skip-link:focus { top: 0; }
+    .visually-hidden {
+      position: absolute !important; width: 1px; height: 1px;
+      margin: -1px; padding: 0; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--forest); outline-offset: 2px;
+    }
+    .topbar :focus-visible, .hero :focus-visible, .cta-banner :focus-visible,
+    footer :focus-visible { outline-color: var(--gold-pale); }
+    a, button, input, select, textarea, [id] { scroll-margin-top: 76px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     /* ── TOP BAR ── */
     .topbar {
       background: var(--forest);
       color: #fff;
       padding: 0 2rem;
-      height: 58px;
+      min-height: 58px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       border-bottom: 3px solid var(--gold);
@@ -111,8 +143,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.6);
-      background:
+      background-color: rgba(0,0,0,0.62);
+      background-image:
         radial-gradient(ellipse at 75% -10%, rgba(201,168,76,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 10% 110%, rgba(59,110,86,0.3) 0%, transparent 50%);
       pointer-events: none;
@@ -122,7 +154,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-color: rgba(0,0,0,0.35);
+      background-color: rgba(0,0,0,0.25);
       background-image:
         linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
@@ -162,7 +194,7 @@
 
     .hero-sub {
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255,255,255,0.92);
       max-width: 500px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
@@ -232,6 +264,7 @@
     .officers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3.5rem; }
 
     .officer-card {
+      min-width: 0;
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; padding: 1.5rem 1rem; text-align: center;
       box-shadow: 0 2px 12px rgba(27,61,47,0.06);
@@ -250,7 +283,7 @@
     }
     .officer-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-    .officer-name { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--forest); margin-bottom: 0.2rem; }
+    .officer-name { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--forest); margin-bottom: 0.2rem; overflow-wrap: anywhere; }
     .officer-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
     .officer-email { font-size: 0.73rem; color: var(--accent); margin-top: 0.5rem; }
 
@@ -363,7 +396,7 @@
       line-height: 1.2;
       margin-bottom: 0.5rem;
     }
-    .section-intro h2 em { font-style: italic; color: var(--gold); }
+    .section-intro h2 em { font-style: italic; color: var(--gold-ink); }
     .section-intro p {
       font-size: 0.9rem;
       color: var(--muted);
@@ -378,7 +411,7 @@
     .cta-banner {
       background: linear-gradient(135deg, var(--forest) 0%, var(--forest-3) 100%);
       border-radius: 16px; padding: 3rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 2rem; margin-top: 1rem; margin-bottom: 3.5rem;
       position: relative; overflow: hidden;
     }
@@ -391,7 +424,7 @@
     .cta-text { position: relative; z-index: 1; }
     .cta-text h2 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0.6rem; line-height: 1.2; }
     .cta-text h2 em { color: var(--gold); font-style: italic; }
-    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.65); max-width: 400px; line-height: 1.65; }
+    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.82); max-width: 400px; line-height: 1.65; }
 
     .cta-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; position: relative; z-index: 1; }
 
@@ -429,7 +462,7 @@
 
     .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-col ul li a { font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul li a { display: inline-block; padding: 0.2rem 0; font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
     .footer-col ul li a:hover { color: #fff; }
 
     .footer-bottom {
@@ -438,7 +471,7 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: 0.73rem; flex-wrap: wrap; gap: 0.5rem;
     }
-    .footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-bottom a { color: rgba(255,255,255,0.75); transition: color 0.15s; }
     .footer-bottom a:hover { color: #fff; }
 
     /* ── HAMBURGER MENU ── */
@@ -559,32 +592,41 @@
       .officer-card { padding: 0.9rem 1rem; }
       .officer-email { display: none; }
     }
+
+    @media (max-width: 480px) {
+      .officers-grid { grid-template-columns: 1fr; }
+      .officer-info { min-width: 0; }
+      .officer-name { overflow-wrap: anywhere; }
+    }
   </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- TOP BAR -->
 <header class="topbar">
   <a href="/" class="topbar-logo">Drew <span>SGA</span></a>
   <div class="topbar-divider"></div>
   <div class="topbar-sub">Student Government Association</div>
-  <nav>
+  <nav aria-label="Primary">
     <a href="/history">History</a>
     <a href="/members">Members</a>
     <a href="/#initiatives">Initiatives    </a>
     <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
   </nav>
-  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()">
-    <div class="hamburger-icon">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"
+          aria-expanded="false" aria-controls="mobileNav" onclick="toggleMobileNav()">
+    <span class="hamburger-icon" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </span>
   </button>
 </header>
 
 <!-- MOBILE NAVIGATION -->
-<nav class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
   <a href="/history">History</a>
   <a href="/members">Members</a>
   <a href="/#initiatives">Initiatives</a>
@@ -592,7 +634,7 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero" style="left: -1px;">
+<section class="hero" aria-label="About the senate" style="left: -1px;">
   <div class="hero-inner">
     
     <h1>Meet the <em>Senate</em><br></h1>
@@ -603,15 +645,15 @@
 
 
 <!-- MAIN -->
-<main class="page">
+<main class="page" id="main" tabindex="-1">
 
   <!-- EXECUTIVE BOARD -->
   <div class="section-intro">
     <h2>Executive Board <em>2025–26</em></h2>
     <p>The executive board leads the SGA's day-to-day operations, chairs committees, and serves as a liaison between the student body and Drew University administration.</p>
   </div>
-  <div class="section-label">Executive Officers</div>
-  <div class="officers-grid" id="officersGrid">
+  <p class="section-label">Executive Officers</p>
+  <div class="officers-grid" id="officersGrid" aria-busy="true">
     <!-- Skeleton loaders -->
     <div class="officer-card"><div class="officer-avatar skeleton" style="border:none;background:var(--border);flex-shrink:0;"></div><div class="officer-info"><div class="skeleton" style="height:14px;width:55%;margin-bottom:6px;border-radius:4px;"></div><div class="skeleton" style="height:11px;width:35%;border-radius:4px;"></div></div></div>
     <div class="officer-card"><div class="officer-avatar skeleton" style="border:none;background:var(--border);flex-shrink:0;"></div><div class="officer-info"><div class="skeleton" style="height:14px;width:55%;margin-bottom:6px;border-radius:4px;"></div><div class="skeleton" style="height:11px;width:35%;border-radius:4px;"></div></div></div>
@@ -624,8 +666,8 @@
       <h2>Student Senators <em>2025–26</em></h2>
       <p>Senators represent the diverse voices of the Drew student body across residential, commuter, class-year, and affinity constituencies. Reach out to your senator to bring your concerns to the floor.</p>
     </div>
-    <div class="section-label">Student Senators</div>
-    <div class="senators-roster" id="senatorsGrid"></div>
+    <p class="section-label">Student Senators</p>
+    <div class="senators-roster" id="senatorsGrid" aria-busy="true"></div>
   </div>
 
   <!-- CTA -->
@@ -637,7 +679,7 @@
     
     <div class="cta-actions">
       <a href="mailto:sga@drew.edu" class="btn-secondary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Email Us Directly
       </a>
     </div>
@@ -654,7 +696,7 @@
     </div>
     <div class="footer-col">
       <h4>Governance</h4>
-      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget & Funding</a></li></ul>
+      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget &amp; Funding</a></li></ul>
     </div>
     <div class="footer-col">
       <h4>Students</h4>
@@ -670,6 +712,8 @@
     <span><a href="https://drew.edu/academic/student-resources/center-for-academic-excellence/office-of-accessibility-resources/">Accessibility</a> · <a href="https://drew.edu/privacy-policy/">Privacy</a> · <a href="https://drew.edu" target="_blank">drew.edu</a></span>
   </div>
 </footer>
+
+<div id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></div>
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
@@ -709,8 +753,8 @@
   }
 
   function errorHtml(msg) {
-    return `<div class="error-state" style="grid-column:1/-1;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    return `<div class="error-state" role="alert" style="grid-column:1/-1;">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       ${escHtml(msg)}
     </div>`;
   }
@@ -720,7 +764,7 @@
     const el = document.getElementById(gridId);
     if (!rows.length) {
       el.innerHTML = `<div class="empty-state" style="padding:2rem 1.75rem;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
         <p>No officers to display at this time.</p>
       </div>`;
       return;
@@ -728,13 +772,13 @@
     el.innerHTML = rows.map(p => {
       const initials = getInitials(p.name);
       const avatarInner = p.image_url
-        ? `<img src="${escHtml(p.image_url)}" alt="${escHtml(p.name)}" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
+        ? `<img src="${escHtml(p.image_url)}" alt="" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
         : escHtml(initials);
       return `
         <div class="officer-card">
           <div class="officer-avatar">${avatarInner}</div>
           <div class="officer-info">
-            <div class="officer-name">${escHtml(p.name)}</div>
+            <h3 class="officer-name">${escHtml(p.name)}</h3>
             <div class="officer-title">${escHtml(p.title)}</div>
           </div>
           ${p.email ? `<a class="officer-email" href="mailto:${escHtml(p.email)}">${escHtml(p.email)}</a>` : ''}
@@ -747,7 +791,7 @@
     const el = document.getElementById(gridId);
     if (!rows.length) {
       el.innerHTML = `<div class="empty-state" style="padding:2rem 1.75rem;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
         <p>No senators to display at this time.</p>
       </div>`;
       return;
@@ -755,13 +799,13 @@
     el.innerHTML = rows.map(p => {
       const initials = getInitials(p.name);
       const avatarInner = p.image_url
-        ? `<img src="${escHtml(p.image_url)}" alt="${escHtml(p.name)}" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
+        ? `<img src="${escHtml(p.image_url)}" alt="" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
         : escHtml(initials);
       return `
         <div class="senator-card">
           <div class="senator-avatar">${avatarInner}</div>
           <div class="senator-details">
-            <div class="senator-name">${escHtml(p.name)}</div>
+            <h3 class="senator-name">${escHtml(p.name)}</h3>
             <div class="senator-title">${escHtml(p.title)}</div>
           </div>
           ${p.email ? `<a class="senator-email" href="mailto:${escHtml(p.email)}">${escHtml(p.email)}</a>` : ''}
@@ -789,6 +833,12 @@
       document.getElementById('senatorsGrid').innerHTML +=
         errorHtml('Could not load senators: ' + senators.reason?.message);
     }
+
+    ['officersGrid','senatorsGrid'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute('aria-busy', 'false');
+    });
+    document.getElementById('liveStatus').textContent = 'Officers and senators updated.';
   }
   init();
 
@@ -796,14 +846,17 @@
   function toggleMobileNav() {
     const btn = document.getElementById('hamburgerBtn');
     const nav = document.getElementById('mobileNav');
-    btn.classList.toggle('active');
-    nav.classList.toggle('active');
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.classList.toggle('active', open);
+    nav.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
   }
 
   // Close mobile nav when a link is clicked
   document.querySelectorAll('.mobile-nav a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('hamburgerBtn').classList.remove('active');
+      document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
       document.getElementById('mobileNav').classList.remove('active');
     });
   });

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><head>
+<head>
   <link rel="icon" type="image/x-icon" href="/sgovlogo.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,12 +13,13 @@
       --forest-3:  #2e5e49;
       --gold:      #c9a84c;
       --gold-pale: #f0e4c0;
+      --gold-ink:  #7d601f;
       --gold-dim:  rgba(201,168,76,0.15);
       --bg:        #f2ede4;
       --surface:   #faf7f2;
       --border:    #ddd5c4;
       --text:      #1a1a18;
-      --muted:     #7a7265;
+      --muted:     #665e52;
       --accent:    #3b6e56;
       --green:     #2a6e47;
       --red:       #b94040;
@@ -36,13 +37,44 @@
 
     a { color: inherit; text-decoration: none; }
 
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: absolute; left: 0; top: -100px; z-index: 200;
+      background: var(--forest); color: #fff;
+      padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 700;
+      border-radius: 0 0 6px 0;
+    }
+    .skip-link:focus { top: 0; }
+    .visually-hidden {
+      position: absolute !important; width: 1px; height: 1px;
+      margin: -1px; padding: 0; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--forest); outline-offset: 2px;
+    }
+    .topbar :focus-visible, .hero :focus-visible, .cta-banner :focus-visible,
+    footer :focus-visible { outline-color: var(--gold-pale); }
+    a, button, input, select, textarea, [id] { scroll-margin-top: 76px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
     /* ── TOP BAR ── */
     .topbar {
       background: var(--forest);
       color: #fff;
       padding: 0 2rem;
-      height: 58px;
+      min-height: 58px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
       border-bottom: 3px solid var(--gold);
@@ -101,7 +133,7 @@
 
     .archive-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
       gap: 2rem;
     }
 
@@ -144,8 +176,9 @@
     .document-link {
       display: inline-block;
       background-color: var(--gold);
-      color: var(--bg);
+      color: var(--forest);
       padding: 0.6rem 1rem;
+      border: 2px solid var(--forest);
       border-radius: 4px;
       text-decoration: none;
       font-weight: 500;
@@ -160,7 +193,7 @@
     /* ── HERO ── */
     .hero {
   background-image: 
-    linear-gradient(rgba(0,0,0,0.4), rgb(0,0,0,0.4)), 
+    linear-gradient(rgba(0,0,0,0.68), rgba(0,0,0,0.68)), 
     url('/history/mead2.JPG');
 
   background-size: cover;
@@ -229,7 +262,7 @@
 
     .hero-sub {
       font-size: 1.05rem;
-      color: rgba(255,255,255,0.68);
+      color: rgba(255,255,255,0.92);
       max-width: 500px;
       margin: 0 auto 2.5rem;
       line-height: 1.7;
@@ -567,7 +600,7 @@
     .cta-banner {
       background: linear-gradient(135deg, var(--forest) 0%, var(--forest-3) 100%);
       border-radius: 16px; padding: 3rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 2rem; margin-bottom: 3.5rem;
       position: relative; overflow: hidden;
     }
@@ -580,7 +613,7 @@
     .cta-text { position: relative; z-index: 1; }
     .cta-text h2 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0.6rem; line-height: 1.2; }
     .cta-text h2 em { color: var(--gold); font-style: italic; }
-    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.65); max-width: 400px; line-height: 1.65; }
+    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.82); max-width: 400px; line-height: 1.65; }
 
     .cta-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; position: relative; z-index: 1; }
 
@@ -618,7 +651,7 @@
 
     .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-col ul li a { font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+    .footer-col ul li a { display: inline-block; padding: 0.2rem 0; font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
     .footer-col ul li a:hover { color: #fff; }
 
     .footer-bottom {
@@ -627,7 +660,7 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: 0.73rem; flex-wrap: wrap; gap: 0.5rem;
     }
-    .footer-bottom a { color: rgba(255,255,255,0.5); transition: color 0.15s; }
+    .footer-bottom a { color: rgba(255,255,255,0.75); transition: color 0.15s; }
     .footer-bottom a:hover { color: #fff; }
 
     /* ── ANIMATIONS ── */
@@ -754,29 +787,32 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+
 <!-- ─── HEADER ────────────────────────────────────────────────── -->
 <!-- TOP BAR -->
 <header class="topbar">
   <a href="/" class="topbar-logo">Drew <span>SGA</span></a>
   <div class="topbar-divider"></div>
   <div class="topbar-sub">Student Government Association</div>
-  <nav>
+  <nav aria-label="Primary">
     <a href="/history">History</a>
     <a href="/members">Members</a>
     <a href="/#initiatives">Initiatives    </a>
     <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
   </nav>
-  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()">
-    <div class="hamburger-icon">
+  <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"
+          aria-expanded="false" aria-controls="mobileNav" onclick="toggleMobileNav()">
+    <span class="hamburger-icon" aria-hidden="true">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </span>
   </button>
 </header>
 
 <!-- MOBILE NAVIGATION -->
-<nav class="mobile-nav" id="mobileNav">
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
   <a href="/history">History</a>
   <a href="/members">Members</a>
   <a href="/#initiatives">Initiatives</a>
@@ -784,20 +820,17 @@
 </nav>
 
 <!-- ─── HERO ───────────────────────────────────────────────────── -->
-<section id="archive" class="hero">
-    <h1><br>Document Archive</h1>
-    <p>Access historical documents and records from our repository.</p>
-    
-    <!-- Archive content will be injected here -->
-    <div id="drive-archives" class="initiatives-grid"></div>
+<section id="archive-hero" class="hero" aria-label="Document archive">
+    <h1>Document Archive</h1>
+    <p class="hero-sub">Access historical documents and records from our repository.</p>
 </section>
 
 <!-- ─── MAIN CONTENT ───────────────────────────────────────────── -->
-<main class="page">
-    <section id="archive">
-    <h1 style="margin-bottom: 2rem; font-size: 2rem; color: var(--forest);"></h1>
-    
-    <div class="archive-grid" id="archiveGrid">
+<main class="page" id="main" tabindex="-1">
+    <section id="archive-main" aria-labelledby="archive-heading">
+    <h2 id="archive-heading" class="visually-hidden">Historical documents</h2>
+
+    <div class="archive-grid" id="archiveGrid" aria-busy="true">
       <!-- Archive documents will be loaded here -->
        
     </div>
@@ -813,7 +846,7 @@
     </div>
     <div class="footer-col">
       <h4>Governance</h4>
-      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget & Funding</a></li></ul>
+      <ul><li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=drive_link">Constitution</a></li><li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=drive_link">Bylaws</a></li><li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=drive_link">Past Agendas</a></li><li><a href="https://docs.google.com/document/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget &amp; Funding</a></li></ul>
     </div>
     <div class="footer-col">
       <h4>Students</h4>
@@ -829,6 +862,8 @@
     <span><a href="https://drew.edu/academic/student-resources/center-for-academic-excellence/office-of-accessibility-resources/">Accessibility</a> · <a href="https://drew.edu/privacy-policy/">Privacy</a> · <a href="https://drew.edu" target="_blank">drew.edu</a></span>
   </div>
 </footer>
+
+<div id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></div>
 
 <!-- ─── SCRIPT TO FETCH DRIVE DOCUMENTS ────────────────────────── -->
 <script>
@@ -858,7 +893,7 @@
 
   // ── ICONS + UTILS ────────────────────────────────────────────────────
   const ICONS = [
-    `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>`,
+    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>`,
   ];
 
   function escHtml(str) {
@@ -868,8 +903,8 @@
   }
 
   function errorHtml(msg) {
-    return `<div class="error-state" style="grid-column:1/-1;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    return `<div class="error-state" role="alert" style="grid-column:1/-1;">
+      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
       ${escHtml(msg)}
     </div>`;
   }
@@ -878,7 +913,7 @@
     const el = document.getElementById('archiveGrid');
     if (!rows.length) {
       el.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
         <p>No documents in the archive.</p>
       </div>`;
       return;
@@ -890,9 +925,9 @@
         <div class="document-card">
           <div class="document-header">
             <div class="document-icon">${ICONS[0]}</div>
-            <div class="document-title">${name}</div>
+            <h3 class="document-title">${name}</h3>
           </div>
-          <a href="${link}" class="document-link" target="_blank">View Directory</a>
+          <a href="${link}" class="document-link" target="_blank" rel="noopener" aria-label="View directory: ${name}">View Directory</a>
         </div>`;
     }).join('');
   }
@@ -905,6 +940,8 @@
     } catch (error) {
       document.getElementById('archiveGrid').innerHTML = errorHtml('Could not load archive documents: ' + error.message);
     }
+    document.getElementById('archiveGrid').setAttribute('aria-busy', 'false');
+    document.getElementById('liveStatus').textContent = 'Archive documents updated.';
   }
 
   init();
@@ -913,14 +950,17 @@
   function toggleMobileNav() {
     const btn = document.getElementById('hamburgerBtn');
     const nav = document.getElementById('mobileNav');
-    btn.classList.toggle('active');
-    nav.classList.toggle('active');
+    const open = btn.getAttribute('aria-expanded') !== 'true';
+    btn.classList.toggle('active', open);
+    nav.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
   }
 
   // Close mobile nav when a link is clicked
   document.querySelectorAll('.mobile-nav a').forEach(link => {
     link.addEventListener('click', () => {
       document.getElementById('hamburgerBtn').classList.remove('active');
+      document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
       document.getElementById('mobileNav').classList.remove('active');
     });
   });
