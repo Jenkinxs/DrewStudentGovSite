@@ -4,7 +4,7 @@
   <link rel="icon" type="image/x-icon" href="/sgovlogo.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Government Association — Drew University</title>
+  <title>History — Drew SGA</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -189,6 +189,133 @@
       background-color: #e8c37d;
     }
 
+
+    /* ── TIMELINE ── */
+    .timeline-section { max-width: 860px; margin-bottom: 3.5rem; }
+
+    .timeline-intro { margin-bottom: 2.75rem; }
+    .timeline-intro h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 500;
+      color: var(--forest);
+      line-height: 1.15;
+      margin-bottom: 0.85rem;
+    }
+    .timeline-intro > p {
+      font-size: 0.95rem; color: var(--muted);
+      line-height: 1.7; max-width: 680px;
+    }
+    .timeline-intro .timeline-scope {
+      margin-top: 1.25rem;
+      padding: 0.95rem 1.15rem;
+      background: var(--gold-pale);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.82rem;
+      color: var(--forest);
+      line-height: 1.6;
+    }
+
+    .timeline { --tl-gutter: 2.4rem; padding-left: var(--tl-gutter); }
+
+    .tl-era { margin-bottom: 2.25rem; }
+    .tl-era:last-of-type { margin-bottom: 0; }
+
+    .tl-era-title {
+      font-family: 'Fraunces', serif;
+      font-size: 0.76rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent);
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+    .tl-era-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .tl-list { list-style: none; }
+    .tl-entry { position: relative; padding-bottom: 1.6rem; }
+    .tl-entry:last-child { padding-bottom: 0; }
+
+    .tl-entry::before {
+      content: ''; position: absolute;
+      left: calc(-1 * var(--tl-gutter)); top: 0.45rem;
+      width: 8px; height: 8px; box-sizing: content-box;
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+    }
+    .tl-entry::after {
+      content: ''; position: absolute;
+      left: calc(-1 * var(--tl-gutter) + 5px);
+      top: 1.25rem; bottom: 0;
+      width: 2px; background: #c2b493;
+    }
+    .tl-entry:last-child::after { display: none; }
+
+    .tl-date {
+      display: inline-block;
+      font-family: 'Fraunces', serif;
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--forest);
+      letter-spacing: 0.01em;
+    }
+    .tl-entry p {
+      font-size: 0.92rem; line-height: 1.7;
+      color: var(--text);
+      margin-top: 0.3rem; max-width: 660px;
+    }
+
+    .tl-tag {
+      display: inline-block; margin-left: 0.45rem;
+      padding: 1px 7px; border-radius: 4px; vertical-align: 2px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.09em; text-transform: uppercase;
+    }
+    .tl-tag.milestone {
+      background: var(--gold-pale); color: var(--gold-ink);
+      border: 1px solid rgba(201,168,76,0.45);
+    }
+    .tl-tag.low {
+      background: #fdeaea; color: var(--red);
+      border: 1px solid rgba(185,64,64,0.3);
+    }
+    .tl-tag.crisis { background: var(--red); color: #fff; }
+
+    .tl-entry-now::before { background: var(--gold); border-color: var(--gold); }
+    .tl-entry-now .tl-date { color: var(--accent); }
+    .tl-entry-now p { color: var(--forest); font-weight: 600; }
+
+    .timeline-sources {
+      margin-top: 2rem; padding-top: 1.15rem;
+      border-top: 1px solid var(--border);
+    }
+    .timeline-sources summary {
+      cursor: pointer;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.04em; color: var(--accent);
+    }
+    .timeline-sources summary:focus-visible {
+      outline: 3px solid var(--forest); outline-offset: 2px;
+    }
+    .timeline-sources p {
+      margin-top: 0.85rem;
+      font-size: 0.78rem; line-height: 1.7;
+      color: var(--muted); max-width: 760px;
+    }
+
+    .archive-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 500; color: var(--forest);
+      margin-bottom: 0.4rem;
+    }
+    .archive-sub { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.75rem; }
+
+    @media (max-width: 600px) {
+      .timeline { --tl-gutter: 1.85rem; }
+      .tl-entry p { font-size: 0.88rem; }
+    }
 
     /* ── HERO ── */
     .hero {
@@ -824,15 +951,278 @@
 </nav>
 
 <!-- ─── HERO ───────────────────────────────────────────────────── -->
-<section id="archive-hero" class="hero" aria-label="Document archive">
-    <h1>Document Archive</h1>
-    <p class="hero-sub">Access historical documents and records from our repository.</p>
+<section id="archive-hero" class="hero" aria-label="SGA history">
+    <h1>Our History</h1>
+    <p class="hero-sub">Nearly a century of student government at Drew — the fights, the reforms, and the record they left behind.</p>
 </section>
 
 <!-- ─── MAIN CONTENT ───────────────────────────────────────────── -->
 <main class="page" id="main" tabindex="-1">
+
+    <section id="timeline" class="timeline-section" aria-labelledby="timeline-heading">
+      <div class="timeline-intro">
+        <h2 id="timeline-heading">A Timeline, 1928–2026</h2>
+        <p>From a student council inside a twelve-man college to a senate that has been impeached, sold and rebuilt within four years. Entries record constitutional changes, concrete policy wins, and the moments the institution discovered the limits of its own authority.</p>
+        <p class="timeline-scope"><strong>A note on scope.</strong> This is the undergraduate government of the College of Liberal Arts — the Student Government Association — not a university-wide body. The theological and graduate schools sit outside its jurisdiction. Dates in parentheses are the month of the primary source, not necessarily the month of the underlying event.</p>
+      </div>
+
+      <div class="timeline">
+        <section class="tl-era" aria-labelledby="era-founding">
+          <h3 class="tl-era-title" id="era-founding">I. Founding and the Student Council</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">1928</span>
+              <p>Brothers College opens with 12 students on a $1.5 million gift from Arthur and Leonard Baldwin. The Drew Theological Seminary becomes Drew University.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Sept 1930</span>
+              <p>The Student Association is active on campus, hosting the opening program of the academic year.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 1930</span>
+              <p>President Brown asks the college student council to formulate an Honor System before final examinations “and to organize machinery to administer it.”</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Jan 1931</span>
+              <p>The student council is formally given the opportunity to study and criticize new academic regulations before their adoption.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 1932</span>
+              <p>The council restricts smoking at public functions to rooms designated by the administration — and pledges to enforce its own decree. Enforcement power, not merely advice.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">May 1932</span>
+              <p>A written student-body constitution is in force: an elected Student Body President, a council of four officers, and a clause requiring the council president to appoint the Freshman guide. Whitney succeeds Schroll in a closely contested presidential election.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 1935</span>
+              <p>Council referenda amend the student-body constitution and advance the election date by a month.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 1936</span>
+              <p>After two months of study, the Student Council drafts an Honor Code and submits it to the student body.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 1942</span>
+              <p>Brothers College becomes coeducational. A new constitution is drafted: elections standardised under a supervising committee, “machine politics” targeted, and the document reworded so that both sexes fall under its jurisdiction. The old constitution, the council president says, “has been outgrown; it was set up as a club affair.”</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 1943</span>
+              <p>The new constitution passes the Student Council on 13 April and goes to the student body. Drafted by Spence Morris, George Mays, John Mullins, Carl Anderson and Oscar Hoffman — and defended as “a political constitution, not a club constitution.”</p>
+            </li>
+          </ol>
+        </section>
+        <section class="tl-era" aria-labelledby="era-postwar">
+          <h3 class="tl-era-title" id="era-postwar">II. Postwar: Constitution-Writing and Its Limits</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">Nov 1946</span>
+              <p>Constitutional crisis. The council president amends the constitution by decree — posting it and holding a secret ballot instead of circulating it for signatures and calling a Student Association meeting, as Article IX required — then argues it is not unconstitutional because the text does not expressly forbid his method.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 1948</span>
+              <p>A further new constitution goes to a student vote on 31 March.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Feb 1950</span>
+              <p>The constitution is amended by petition of 15% of the student body, adding a requirement that the council hold a mass meeting before drafting amendments. Also that month: a hazing referendum, a Commuter President seated on the council, and a standing food committee.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Oct 1956</span>
+              <p>The administration imposes a dress code in the Refectory without informing the Student Council. The Acorn protests the bypass rather than the rule.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Nov 1966</span>
+              <p>“Student Senate” is now the body’s name. The Senate presents an Open House bill to the deans backed by a petition of more than 500 signatures, and hosts the university’s Centennial Awards banquet.</p>
+            </li>
+          </ol>
+        </section>
+        <section class="tl-era" aria-labelledby="era-senate">
+          <h3 class="tl-era-title" id="era-senate">III. The Senate Years</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">Oct 1968</span>
+              <p>The money architecture: ECAC — three faculty, one junior, one senior, and the Student Government President, chaired by the Dean of Students — controls $71,110 of the general fee and allots lump sums to four boards: Athletic, Academic Activities, Library, and Student Government. A referendum that autumn proposes adding three student members.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">1969</span>
+              <p>Bob Smartt is elected Student Government President in the spring. The abbreviation “SGA” enters campus usage by October.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 1970</span>
+              <p>A student referendum abolishes academic grade-average eligibility requirements for office — a loophole the Judicial Board had complained it was forced to rule around.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">May 1970</span>
+              <p>The Student Senate unanimously passes the General Dormitory Bill of Rights and approves a new dorm council structure, after the faculty tables the student legislative package and tells students to enact it themselves first. Judicial Board chairman George Blackford writes procedural standards guaranteeing “a hearing of grievances to every Drew college student.”</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Oct 1970</span>
+              <p>The Trustees approve consumption of alcohol on campus by students of legal age — a handbook change routed through the Committee on Student Concerns and the Trustee Committee on Student Life.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 1970</span>
+              <p>A new Student Association Constitution, passed by referendum, takes effect.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">1972–74</span>
+              <p>The Pub campaign. Students propose an on-campus pub in 1972; President Robert Oxnam refuses, citing discrimination against the two-thirds of students then under 21 and the risk of town opposition. New Jersey lowers the drinking age to 18 on 1 January 1973. Student Government puts the pub to a referendum in 1974 and it passes. Students incorporate the Center Pub Association and sell $1 memberships — 60 were required for a club licence. Madison’s council approves the by-laws in August; the licence follows in September.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">8 Oct 1974 <span class="tl-tag milestone">Milestone</span></span>
+              <p>The Pub opens at 4:30 p.m. The Acorn that week: “after all the talk about apathy on this campus… something has finally united the student body.”</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Nov 1977</span>
+              <p>A petition demands divestment from General Electric and disclosure of all South Africa-linked holdings. President Paul Hardin refuses. Students sit in.</p>
+            </li>
+          </ol>
+        </section>
+        <section class="tl-era" aria-labelledby="era-divestment">
+          <h3 class="tl-era-title" id="era-divestment">IV. Divestment: Thirteen Years</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">Feb 1978</span>
+              <p>The SGA Committee on Drew’s Investment Responsibilities raises a small sum — the OCR reads “nearly $50” — to buy stock in U.S. corporations in the student association’s name, so that students can vote shareholder resolutions directly on apartheid, environmental and disclosure questions.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 1978</span>
+              <p>The Investment Responsibility Committee is reviewing shareholder resolutions before the Trustees consider them; the SGA and Senate approve its recommendations first.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 1985</span>
+              <p>A student referendum asking the Trustees to divest from all corporations doing business in South Africa “easily passed,” though the Acorn notes it was strangely worded.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Oct 1985</span>
+              <p>The SGA passes its own divestment resolution. President Stephen Foster presents it to the Board of Trustees in person.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 1985</span>
+              <p>The Board refuses full divestment, adopting only a Sullivan Principles screen. Students call it “a minor and unencouraging” first step.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">1986</span>
+              <p>The Drew Anti-Apartheid Movement forms. A day-long teach-in on 21 March marks Sharpeville. In April, 65 protesters with black balloons and candles line the trustees’ meeting and read a Divestment Declaration. In October, more than 130 march on Mead Hall.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Oct 1987</span>
+              <p>The Trustees adopt a partial policy: no new stock in corporations doing business in South Africa, and divestment within a year of any holding without a top-two Sullivan rating. A Social Responsibility Committee is formed that winter.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 1989</span>
+              <p>The Trustees declare the portfolio “totally divested” of South Africa-linked holdings, with the exception of one pharmaceutical company.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Nov 1990</span>
+              <p>The Board broadens the policy again. The Acorn calls it “one of the most far-reaching negotiated policies toward divestment.”</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 1991</span>
+              <p>Activists note the university has still not divested completely. It never did so cleanly — but the campaign moved an endowment.</p>
+            </li>
+          </ol>
+        </section>
+        <section class="tl-era" aria-labelledby="era-quiet">
+          <h3 class="tl-era-title" id="era-quiet">V. The Quiet Decades</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">Feb 1992</span>
+              <p>SGA President Sodan Selvaretnam’s constitutional committee, meeting weekly for over an hour a session, proposes a new constitution. Restructuring dominates the year.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">May 2010</span>
+              <p>SGA President Nelson Melendez signs the national student-presidents’ letter on clean energy legislation.</p>
+            </li>
+          </ol>
+        </section>
+        <section class="tl-era" aria-labelledby="era-reform">
+          <h3 class="tl-era-title" id="era-reform">VI. Transparency, Crisis, Reform</h3>
+          <ol class="tl-list">
+            <li class="tl-entry">
+              <span class="tl-date">14 Feb 2018</span>
+              <p>Weekly public summaries of Senate meetings begin appearing on Facebook, a transparency initiative of President Salma Mahmoud and Vice President Shehab Marzouk, run by Chief Communications Officer Nicole Albornoz.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 2018</span>
+              <p>After the defacement of a Black Lives Matter sign, the Senate passes a motion to plan a CLA-centred event and issue a statement, under pressure from students led by former Senator Richard Taylor.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 2021</span>
+              <p>A COVID Concerns committee is formed. The Senate Secretary role expands into public introductions of every senator and cabinet member on Instagram.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 2021</span>
+              <p>Nate Roark and Andrew Lora are inaugurated President and Vice President on 12 December, and resurrect the Constitutional Revision Committee.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">2022</span>
+              <p>The Textbook Lending Library launches, a need-based project of Senator Gabriella Ramirez. On 23 February the Senate unanimously passes a resolution, written by Senators Gabby Rizzolo and Rachel Papa, demanding transparency from President Thomas Schwarz over the potential sale of the Drew Forest.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Dec 2023 <span class="tl-tag low">Low point</span></span>
+              <p>One presidential ticket runs and wins with 47 votes. A former Chief of Staff later writes that senators routinely won with barely a third of their class voting, and that cabinets had to appoint senators rather than swear in elected ones.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">13 Mar 2024 <span class="tl-tag crisis">Crisis</span></span>
+              <p>President Brazil Brown is impeached on a charge of failing to comply with the constitution’s requirement that the president serve as spokesperson for the student body. She had offered to resign; the Senate chose impeachment and elevated Vice President Julia Satola to the presidency.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Sept 2024</span>
+              <p>An act passes lowering the cost of student health insurance.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Nov 2024</span>
+              <p>Commuter Senator Maks Coven secures a full-size refrigerator for the reopened Commuter Lounge after storm damage closed it for the semester.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Apr 2025</span>
+              <p>BOB concludes budget interviews for more than 40 clubs against campus-wide cuts. Across the year the board fields $182,000 in requests and allocates roughly $90,000 to about 60 clubs.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Sept 2025</span>
+              <p>A permanent Transfer Senator seat is created; Dejanayha Hill is its first holder. Zaire Wright and Daniel Ohr lead the Senate.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Nov 2025</span>
+              <p>A town hall commits the administration to a designated campus mental health day and to under-21 access to the Pub at set times. A free period-products initiative is debated the month before.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Jan 2026</span>
+              <p>The Drew Forest is sold to the Borough of Madison — preserved, but by municipal purchase rather than by the university conceding the students’ 2022 demands.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Mar 2026</span>
+              <p>Commuter Senator Thomas Jenkins launches a 24/7 Student Complaints and Concerns hotline on Google Voice, with anonymised transcripts reviewed by senators.</p>
+            </li>
+            <li class="tl-entry">
+              <span class="tl-date">Sept 2026</span>
+              <p>The fall Senate election is invalidated and rerun on 25 September. Nine of twelve seats had been vacant; eight are filled. The reform coalition Students for Change wins six of them, taking the majority of the Guzman–Jenkins Senate.</p>
+            </li>
+          </ol>
+        </section>
+
+        <section class="tl-era" aria-labelledby="era-now">
+          <h3 class="tl-era-title" id="era-now">The work continues</h3>
+          <ol class="tl-list">
+            <li class="tl-entry tl-entry-now">
+              <span class="tl-date">Today &amp; beyond</span>
+              <p>Adapting to the modern age, and ensuring students are heard no matter what.</p>
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <details class="timeline-sources">
+        <summary>Sources and notes</summary>
+        <p>The backbone is the Drew Acorn Archive Project: 994 scanned issues, 1928–1999, OCR’d in full and searched directly, supplemented by the Acorn’s live archive for 2013–2026. Institutional context from Drew University’s published history and John T. Cunningham, <em>University in the Forest</em>. Drew Forest material from Friends of the Drew Forest and the <em>Madison Eagle</em>.</p>
+        <p><strong>Known gaps.</strong> Four archive issues could not be retrieved from the Internet Archive and remain unread: 17 February 1933, 7 October 1937, 6 February 1970 and 30 September 1994. The Wayback Machine’s index was unavailable during research, so cached versions of the university’s own student-government pages were not consulted. The 2000–2015 period is consequently the thinnest part of this record. <strong>Excluded.</strong> An April 2026 “Student Government Goes Rogue” piece is satire. A 2017 Acorn article headlined on Senate sexual-harassment training reports on the U.S. Congress, not Drew’s Senate.</p>
+      </details>
+    </section>
+
     <section id="archive-main" aria-labelledby="archive-heading">
-    <h2 id="archive-heading" class="visually-hidden">Historical documents</h2>
+    <h2 id="archive-heading" class="archive-title">Document Archive</h2>
+    <p class="archive-sub">Meeting records and directories from the SGA archive.</p>
 
     <div class="archive-grid" id="archiveGrid" aria-busy="true">
       <!-- Archive documents will be loaded here -->
