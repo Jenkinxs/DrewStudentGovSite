@@ -193,28 +193,13 @@
     /* ── TIMELINE ── */
     .timeline-section { max-width: 860px; margin-bottom: 3.5rem; }
 
-    .timeline-intro { margin-bottom: 2.75rem; }
-    .timeline-intro h2 {
+    .timeline-heading {
       font-family: 'Fraunces', serif;
       font-size: clamp(1.8rem, 4vw, 2.4rem);
       font-weight: 500;
       color: var(--forest);
       line-height: 1.15;
-      margin-bottom: 0.85rem;
-    }
-    .timeline-intro > p {
-      font-size: 0.95rem; color: var(--muted);
-      line-height: 1.7; max-width: 680px;
-    }
-    .timeline-intro .timeline-scope {
-      margin-top: 1.25rem;
-      padding: 0.95rem 1.15rem;
-      background: var(--gold-pale);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 6px 6px 0;
-      font-size: 0.82rem;
-      color: var(--forest);
-      line-height: 1.6;
+      margin-bottom: 1.75rem;
     }
 
     .timeline { --tl-gutter: 2.4rem; padding-left: var(--tl-gutter); }
@@ -265,44 +250,9 @@
       margin-top: 0.3rem; max-width: 660px;
     }
 
-    .tl-tag {
-      display: inline-block; margin-left: 0.45rem;
-      padding: 1px 7px; border-radius: 4px; vertical-align: 2px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.6rem; font-weight: 700;
-      letter-spacing: 0.09em; text-transform: uppercase;
-    }
-    .tl-tag.milestone {
-      background: var(--gold-pale); color: var(--gold-ink);
-      border: 1px solid rgba(201,168,76,0.45);
-    }
-    .tl-tag.low {
-      background: #fdeaea; color: var(--red);
-      border: 1px solid rgba(185,64,64,0.3);
-    }
-    .tl-tag.crisis { background: var(--red); color: #fff; }
-
     .tl-entry-now::before { background: var(--gold); border-color: var(--gold); }
     .tl-entry-now .tl-date { color: var(--accent); }
     .tl-entry-now p { color: var(--forest); font-weight: 600; }
-
-    .timeline-sources {
-      margin-top: 2rem; padding-top: 1.15rem;
-      border-top: 1px solid var(--border);
-    }
-    .timeline-sources summary {
-      cursor: pointer;
-      font-size: 0.8rem; font-weight: 700;
-      letter-spacing: 0.04em; color: var(--accent);
-    }
-    .timeline-sources summary:focus-visible {
-      outline: 3px solid var(--forest); outline-offset: 2px;
-    }
-    .timeline-sources p {
-      margin-top: 0.85rem;
-      font-size: 0.78rem; line-height: 1.7;
-      color: var(--muted); max-width: 760px;
-    }
 
     .archive-title {
       font-family: 'Fraunces', serif;
@@ -960,11 +910,7 @@
 <main class="page" id="main" tabindex="-1">
 
     <section id="timeline" class="timeline-section" aria-labelledby="timeline-heading">
-      <div class="timeline-intro">
-        <h2 id="timeline-heading">A Timeline, 1928–2026</h2>
-        <p>From a student council inside a twelve-man college to a senate that has been impeached, sold and rebuilt within four years. Entries record constitutional changes, concrete policy wins, and the moments the institution discovered the limits of its own authority.</p>
-        <p class="timeline-scope"><strong>A note on scope.</strong> This is the undergraduate government of the College of Liberal Arts — the Student Government Association — not a university-wide body. The theological and graduate schools sit outside its jurisdiction. Dates in parentheses are the month of the primary source, not necessarily the month of the underlying event.</p>
-      </div>
+      <h2 id="timeline-heading" class="timeline-heading">A Timeline, 1928–2026</h2>
 
       <div class="timeline">
         <section class="tl-era" aria-labelledby="era-founding">
@@ -1069,7 +1015,7 @@
               <p>The Pub campaign. Students propose an on-campus pub in 1972; President Robert Oxnam refuses, citing discrimination against the two-thirds of students then under 21 and the risk of town opposition. New Jersey lowers the drinking age to 18 on 1 January 1973. Student Government puts the pub to a referendum in 1974 and it passes. Students incorporate the Center Pub Association and sell $1 memberships — 60 were required for a club licence. Madison’s council approves the by-laws in August; the licence follows in September.</p>
             </li>
             <li class="tl-entry">
-              <span class="tl-date">8 Oct 1974 <span class="tl-tag milestone">Milestone</span></span>
+              <span class="tl-date">8 Oct 1974</span>
               <p>The Pub opens at 4:30 p.m. The Acorn that week: “after all the talk about apathy on this campus… something has finally united the student body.”</p>
             </li>
             <li class="tl-entry">
@@ -1160,11 +1106,11 @@
               <p>The Textbook Lending Library launches, a need-based project of Senator Gabriella Ramirez. On 23 February the Senate unanimously passes a resolution, written by Senators Gabby Rizzolo and Rachel Papa, demanding transparency from President Thomas Schwarz over the potential sale of the Drew Forest.</p>
             </li>
             <li class="tl-entry">
-              <span class="tl-date">Dec 2023 <span class="tl-tag low">Low point</span></span>
+              <span class="tl-date">Dec 2023</span>
               <p>One presidential ticket runs and wins with 47 votes. A former Chief of Staff later writes that senators routinely won with barely a third of their class voting, and that cabinets had to appoint senators rather than swear in elected ones.</p>
             </li>
             <li class="tl-entry">
-              <span class="tl-date">13 Mar 2024 <span class="tl-tag crisis">Crisis</span></span>
+              <span class="tl-date">13 Mar 2024</span>
               <p>President Brazil Brown is impeached on a charge of failing to comply with the constitution’s requirement that the president serve as spokesperson for the student body. She had offered to resign; the Senate chose impeachment and elevated Vice President Julia Satola to the presidency.</p>
             </li>
             <li class="tl-entry">
@@ -1213,11 +1159,6 @@
         </section>
       </div>
 
-      <details class="timeline-sources">
-        <summary>Sources and notes</summary>
-        <p>The backbone is the Drew Acorn Archive Project: 994 scanned issues, 1928–1999, OCR’d in full and searched directly, supplemented by the Acorn’s live archive for 2013–2026. Institutional context from Drew University’s published history and John T. Cunningham, <em>University in the Forest</em>. Drew Forest material from Friends of the Drew Forest and the <em>Madison Eagle</em>.</p>
-        <p><strong>Known gaps.</strong> Four archive issues could not be retrieved from the Internet Archive and remain unread: 17 February 1933, 7 October 1937, 6 February 1970 and 30 September 1994. The Wayback Machine’s index was unavailable during research, so cached versions of the university’s own student-government pages were not consulted. The 2000–2015 period is consequently the thinnest part of this record. <strong>Excluded.</strong> An April 2026 “Student Government Goes Rogue” piece is satire. A 2017 Acorn article headlined on Senate sexual-harassment training reports on the U.S. Congress, not Drew’s Senate.</p>
-      </details>
     </section>
 
     <section id="archive-main" aria-labelledby="archive-heading">
