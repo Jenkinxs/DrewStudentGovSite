@@ -704,19 +704,19 @@
 <!-- ─── CONFIGURATION ──────────────────────────────────────────────────
   Fill in these two values. Everything else is automatic.
 
-  SPREADSHEET_ID  — the long ID from your Google Sheet URL:
+  SPREADSHEET_ID  - the long ID from your Google Sheet URL:
                     https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/edit
 
-  API_KEY         — a Google Cloud API key with the
+  API_KEY         - a Google Cloud API key with the
                     "Google Sheets API" enabled and restricted to
                     your site's domain (or unrestricted for dev).
 
   Sheet tab names expected (case-sensitive):
-    Announcements  — columns: title, body, date, tag, link
-    Meetings       — columns: title, date, time, location, access
-    Initiatives    — columns: title, description, status
-    Officers       — columns: name, title, email, image_url
-    Senators       — columns: name, title, email, image_url
+    Announcements  - columns: title, body, date, tag, link
+    Meetings       - columns: title, date, time, location, access
+    Initiatives    - columns: title, description, status
+    Officers       - columns: name, title, email, image_url
+    Senators       - columns: name, title, email, image_url
 ──────────────────────────────────────────────────────────────────── -->
   <script>
  // const response = await fetch("https://sgovsite.t-ra-jenkins3.workers.dev/");
@@ -778,7 +778,7 @@
 <section class="stats-strip" aria-label="SGA at a glance">
   <div class="stat-item"><div class="stat-num">1,600+</div><div class="stat-label">Students Represented</div></div>
   <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Elected Officials</div></div>
-  <div class="stat-item"><div class="stat-num" id="initiativeCount">—</div><div class="stat-label">Active Initiatives</div></div>
+  <div class="stat-item"><div class="stat-num" id="initiativeCount">-</div><div class="stat-label">Active Initiatives</div></div>
   <div class="stat-item"><div class="stat-num">$10K</div><div class="stat-label">Annual Budget</div></div>
   <div class="stat-item"><div class="stat-num">1930s</div><div class="stat-label">Established</div></div>
 </section>
@@ -1113,7 +1113,7 @@
       const d = parseMeetingDate(m.date);
       const month = d
         ? new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'America/New_York' }).format(d)
-        : '—';
+        : '-';
       const day = d
         ? new Intl.DateTimeFormat('en-US', { day: 'numeric', timeZone: 'America/New_York' }).format(d)
         : '--';
