@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drew University — Student Suggestions</title>
+  <title>Student Suggestions - Drew SGA</title>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -688,7 +688,7 @@
     <div>
       <p class="config-banner-title">Google Sheets not connected yet</p>
       <p>
-        This form is running in <strong>demo mode</strong> — submissions won't be saved anywhere. To connect it:
+        This form is running in <strong>demo mode</strong> - submissions won't be saved anywhere. To connect it:
         set <code>SHEET_URL</code> in the script to your Google Apps Script web app URL.<br/>
         <em>The Apps Script code is included as a comment at the bottom of this HTML file.</em>
       </p>
@@ -709,7 +709,7 @@
         </div>
         <!-- <div class="ticket-id-badge">
           <div class="tid-label">Ticket ID</div>
-          <div class="tid-value" id="ticketIdDisplay">—</div>
+          <div class="tid-value" id="ticketIdDisplay">-</div>
         </div> -->
       </div>
 
@@ -764,7 +764,7 @@
           <div class="field">
             <label for="department">Department / Area <span class="req" aria-hidden="true">*</span></label>
             <select id="department" name="department" aria-required="true" aria-describedby="department-err" aria-invalid="false">
-              <option value="">— Select department —</option>
+              <option value="">- Select department -</option>
               <option>Admissions</option>
               <option>Financial Aid</option>
               <option>Registrar</option>
@@ -785,7 +785,7 @@
           <div class="field">
             <label for="category">Category</label>
             <select id="category" name="category">
-              <option value="">— Select category —</option>
+              <option value="">- Select category -</option>
               <option>Account / Login</option>
               <option>Billing / Payment</option>
               <option>Course Registration</option>
@@ -823,7 +823,7 @@
             <div class="priority-group" id="priorityGroup">
               <div class="priority-chip selected-low" data-val="Low" onclick="selectPriority(this)">🟢 Low</div>
               <div class="priority-chip" data-val="Medium" onclick="selectPriority(this)">🟡 Medium</div>
-              <div class="priority-chip" data-val="High" onclick="selectPriority(this)">🔴 High — needs urgent attention</div>
+              <div class="priority-chip" data-val="High" onclick="selectPriority(this)">🔴 High - needs urgent attention</div>
             </div>
           </div>
         </div>-->
@@ -832,7 +832,7 @@
           <div class="field">
             <label>Preferred Contact Method</label>
             <select id="contactMethod">
-              <option value="">— No preference —</option>
+              <option value="">- No preference -</option>
               <option>Email</option>
               <option>Phone call</option>
               <option>In-person appointment</option>
@@ -845,7 +845,7 @@
                 <div class="field">
                   <label>Follow-up Required?</label>
                   <select id="followUp">
-                    <option value="">— Select —</option>
+                    <option value="">- Select -</option>
                     <option>No follow-up needed</option>
                     <option>Schedule a call</option>
                     <option>Schedule an in-person appointment</option>
@@ -879,7 +879,7 @@
       </div>
       <h2>Submission Submitted!</h2>
       <p>Your submission has been logged. Our team will actively work to make a change!</p>
-      <div class="ticket-ref" id="successTicketId">—</div>
+      <div class="ticket-ref" id="successTicketId">-</div>
       <p style="font-size:0.8rem;">Save this ticket ID for your records.</p>
       <button class="btn-primary" type="button" onclick="newTicket()">
         Submit Another Suggestion
@@ -981,7 +981,7 @@
       nextId = d.nextId;
       updateIdDisplay();
     } catch {
-      // CORS or network issue — fall back to a local counter so the form still works
+      // CORS or network issue - fall back to a local counter so the form still works
       nextId = 3001 + sessionCount;
       updateIdDisplay();
     }
@@ -1199,7 +1199,7 @@
 
 <!--
 ════════════════════════════════════════════════════════════════════
-  GOOGLE APPS SCRIPT — paste ALL of this into Extensions → Apps Script
+  GOOGLE APPS SCRIPT - paste ALL of this into Extensions → Apps Script
   then Deploy → Manage deployments → edit → New version → Deploy
 ════════════════════════════════════════════════════════════════════
 
