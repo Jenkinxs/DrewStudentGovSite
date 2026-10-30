@@ -777,7 +777,7 @@
 <!-- STATS -->
 <section class="stats-strip" aria-label="SGA at a glance">
   <div class="stat-item"><div class="stat-num">1,600+</div><div class="stat-label">Students Represented</div></div>
-  <div class="stat-item"><div class="stat-num">19</div><div class="stat-label">Elected Senator Seats</div></div>
+  <div class="stat-item"><div class="stat-num" id="senatorCount">19</div><div class="stat-label">Elected Senator Seats</div></div>
   <div class="stat-item"><div class="stat-num" id="initiativeCount">-</div><div class="stat-label">Active Initiatives</div></div>
   <div class="stat-item"><div class="stat-num">$10K</div><div class="stat-label">Annual Budget</div></div>
   <div class="stat-item"><div class="stat-num">1930s</div><div class="stat-label">Established</div></div>
@@ -827,7 +827,7 @@
           <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
         <div>
-          <h2>Upcoming Meetings & Events</h2>
+          <h2>Upcoming Meetings &amp; Events</h2>
           <p>Please check here regularly for up to date times, locations, and dates.</p>
         </div>
       </div>
@@ -1165,11 +1165,12 @@
 
   // ── INIT ─────────────────────────────────────────────────────────────
   async function init() {
-    // Fire all five fetches in parallel
-    const [announcements, meetings, initiatives, officers, senators] = await Promise.allSettled([
+    // Fire all fetches in parallel
+    const [announcements, meetings, initiatives, senators] = await Promise.allSettled([
       fetchSheet('Announcements'),
       fetchSheet('Meetings'),
       fetchSheet('Initiatives'),
+      fetchSheet('Senators'),
     ]);
 
     // Announcements
@@ -1194,6 +1195,12 @@
     } else {
       document.getElementById('initiativesGrid').innerHTML =
         errorHtml('Could not load initiatives: ' + initiatives.reason?.message);
+    }
+
+    // Elected senator seats track the rows listed on the Members page
+    if (senators.status === 'fulfilled') {
+      const el = document.getElementById('senatorCount');
+      if (el) el.textContent = senators.value.length;
     }
 
     ['announcementsGrid','meetingsList','initiativesGrid'].forEach(id => {
