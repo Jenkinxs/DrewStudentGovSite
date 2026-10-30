@@ -1102,15 +1102,24 @@
   // ── RENDER: MEETINGS ─────────────────────────────────────────────────
   function renderMeetings(rows) {
     const el = document.getElementById('meetingsList');
-    if (!rows.length) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Only meetings still to come, oldest first, so the list reads downward in time.
+    const upcoming = rows
+      .map(m => Object.assign({}, m, { _date: parseMeetingDate(m.date) }))
+      .filter(m => m._date && m._date >= today)
+      .sort((a, b) => a._date - b._date);
+
+    if (!upcoming.length) {
       el.innerHTML = `<div class="empty-state">
         <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <p>No upcoming meetings scheduled.</p>
       </div>`;
       return;
     }
-    el.innerHTML = rows.map(m => {
-      const d = parseMeetingDate(m.date);
+    el.innerHTML = upcoming.map(m => {
+      const d = m._date;
       const month = d
         ? new Intl.DateTimeFormat('en-US', { month: 'short', timeZone: 'America/New_York' }).format(d)
         : '-';
