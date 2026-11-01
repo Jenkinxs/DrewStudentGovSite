@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <link rel="icon" type="image/x-icon" href="/sgovlogo.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Student Government Association - Drew University</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./od-tokens.css" />
   <style>
     :root {
       --forest:    #1b3d2f;
@@ -126,115 +128,41 @@
     }
     .nav-cta:hover { opacity: 0.88; background: var(--gold) !important; }
 
-    /* ── HERO ── */
-    .hero {
-      background-image: url('mead.JPG');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      padding: 5rem 2rem 4.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0,0,0,0.62);
-      background-image:
-        radial-gradient(ellipse at 75% -10%, rgba(201,168,76,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 10% 110%, rgba(59,110,86,0.3) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0,0,0,0.25);
-      /* Grid overlay disabled by request.
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 40px 40px;
-      */
-      pointer-events: none;
-    }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(0, 0, 0, 0);
-      border: 1px solid rgba(201, 168, 76, 0);
-      border-radius: 20px;
-      padding: 0.35rem 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero h1 {
+  /* Hero */
+  .hero {
+    font-family: 'Literata', Georgia, serif;
+    line-height: 1.6;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.661) 0%, rgba(0, 0, 0, 0.6) 55%, rgba(0, 0, 0, 0.15) 100%),
+      url('mead.JPG') center / cover;
+    color: #fff;
+    padding: clamp(3rem, 9vw, 6rem) clamp(1rem, 4vw, 2rem);
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  /*.hero h1 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; font-weight: 700; max-width: 16em; }*/
+  .hero h1 {
       font-family: 'Fraunces', serif;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-size: clamp(2rem, 5vw, 3.25rem);
       font-weight: 500;
-      line-height: 1.1;
+      line-height: 1.15;
       letter-spacing: -0.025em;
+      max-width: 12em;
       margin-bottom: 1.25rem;
       text-shadow: 1px 1px #000000
+      
     }
     .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { max-width: 34em; margin-top: 1rem; font-size: 1.1rem; }
+  .hero-actions { margin-top: 1.75rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
+  .hero a:not(.btn) { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
+  .hero a:not(.btn):hover { text-decoration-thickness: 2px; }
+  .btn {
+    display: inline-block; background: var(--gold); color: var(--forest);
+    font-weight: 700; padding: 0.75rem 1.5rem; border-radius: 4px; text-decoration: none;
+  }
+  .btn:hover { background: #d8b95c; }
+  .hero .next { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.35); font-size: 1rem; }
 
-    .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.92);
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    .hero-actions { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
-
-    .btn-hero-primary {
-      background: var(--gold);
-      color: var(--forest);
-      border: none;
-      border-radius: 8px;
-      padding: 0.85rem 2.25rem;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: opacity 0.15s, transform 0.1s;
-    }
-    .btn-hero-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .btn-hero-secondary {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 8px;
-      padding: 0.85rem 2rem;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: background 0.15s, transform 0.1s;
-    }
-    .btn-hero-secondary:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
 
     /* ── STATS STRIP ── */
     .stats-strip {
@@ -275,6 +203,17 @@
 
     /* ── PAGE ── */
     .page { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+    .section-heading {
+      font-family: var(--ds-font-family-display);
+      font-size: var(--ds-font-size-25);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ds-color-text-primary);
+      padding-bottom: var(--ds-space-12);
+      border-bottom: var(--ds-border-width-2) solid var(--ds-color-border-accent);
+      margin-bottom: var(--ds-space-24);
+    }
 
     .section-label {
       font-size: 0.68rem;
@@ -325,60 +264,61 @@
 
     /* ── ANNOUNCEMENTS ── */
     .announcements-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-bottom: 3.5rem;
+      border-top: var(--ds-border-width-1) solid var(--ds-color-border-default);
+      margin-bottom: var(--ds-space-40);
     }
 
     .announcement-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(27,61,47,0.06);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: box-shadow 0.2s, transform 0.15s;
+      display: grid;
+      grid-template-columns: 9rem minmax(0, 1fr) auto;
+      gap: var(--ds-space-16) var(--ds-space-32);
+      align-items: start;
+      padding-block: var(--ds-space-20);
+      border-bottom: var(--ds-border-width-1) solid var(--ds-color-border-subtle);
     }
-    .announcement-card:hover { box-shadow: 0 6px 24px rgba(27,61,47,0.12); transform: translateY(-2px); }
-    .announcement-card.featured { grid-column: 1 / -1; flex-direction: row; }
 
-    .announcement-img {
-      background: linear-gradient(135deg, var(--forest) 0%, var(--accent) 100%);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    .ann-date {
+      font-size: var(--ds-font-size-13);
+      color: var(--ds-color-text-secondary);
+      font-variant-numeric: tabular-nums;
     }
-    .announcement-card:not(.featured) .announcement-img { height: 130px; }
-    .announcement-card.featured .announcement-img { width: 300px; min-height: 220px; }
-
-    .announcement-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-
-    .ann-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
-
-    .ann-tag {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      background: var(--gold-pale); color: var(--forest);
-      border: 1px solid rgba(201,168,76,0.4); border-radius: 4px; padding: 2px 7px;
-    }
-    .ann-tag.urgent { background: #fdeaea; color: var(--red); border-color: rgba(185,64,64,0.3); }
-    .ann-tag.new { background: #e6f4ec; color: var(--green); border-color: rgba(42,110,71,0.3); }
-
-    .ann-date { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
 
     .announcement-content h3 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.15rem; font-weight: 500;
-      color: var(--forest); line-height: 1.3; margin-bottom: 0.5rem;
+      font-family: var(--ds-font-family-display);
+      font-size: var(--ds-font-size-20);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--ds-color-text-primary);
+      margin-bottom: var(--ds-space-4);
     }
-    .announcement-card.featured .announcement-content h3 { font-size: 1.5rem; }
-    .announcement-content p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; flex: 1; }
+    .announcement-card.featured .announcement-content h3 { font-size: var(--ds-font-size-25); }
+    .announcement-content p {
+      font-size: var(--ds-font-size-16);
+      line-height: 1.55;
+      color: var(--ds-color-text-secondary);
+      max-width: 58ch;
+    }
+
+    .ann-tag {
+      justify-self: end;
+      padding: var(--ds-space-2) var(--ds-space-8);
+      border-radius: var(--ds-radius-control-sm);
+      background: var(--ds-color-bg-accent-subtle);
+      color: var(--ds-color-text-accent);
+      font-size: var(--ds-font-size-13);
+      font-weight: 500;
+      white-space: nowrap;
+    }
 
     .ann-link {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      font-size: 0.8rem; font-weight: 600; color: var(--accent);
-      margin-top: 1rem; transition: gap 0.15s;
+      display: inline-block;
+      margin-top: var(--ds-space-12);
+      font-size: var(--ds-font-size-13);
+      font-weight: 600;
+      color: var(--ds-color-text-link);
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
     }
-    .ann-link:hover { gap: 0.5rem; }
 
     /* ── TWO-COL ── */
     .two-col { display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; margin-bottom: 3.5rem; }
@@ -429,63 +369,86 @@
     .skeleton-line.med { width: 65%; }
     .skeleton-line.long { width: 85%; }
 
-    .skeleton-initiative { border-radius: 12px; border: 1px solid var(--border); padding: 1.75rem 1.5rem; }
-    .skeleton-initiative .skeleton-icon { width: 46px; height: 46px; border-radius: 10px; margin-bottom: 1.25rem; }
-    .skeleton-initiative .skeleton-title { height: 16px; margin-bottom: 0.75rem; width: 70%; }
-    .skeleton-initiative .skeleton-desc { height: 11px; margin-bottom: 6px; }
-    .skeleton-initiative .skeleton-desc.short { width: 55%; }
+    /* ── SIDEBAR (ABOUT / DOCUMENTS / CONTACT) ── */
+    aside { display: flex; flex-direction: column; gap: 2rem; }
 
-    /* ── QUICK LINKS ── */
-    .quick-links-list { display: flex; flex-direction: column; }
-
-    .quick-link-item {
-      display: flex; align-items: center; gap: 0.85rem;
-      padding: 0.9rem 0; border-bottom: 1px solid var(--border);
-      transition: padding-left 0.15s; cursor: pointer;
+    aside h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--forest);
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--forest);
+      margin-bottom: 0.75rem;
     }
-    .quick-link-item:last-child { border-bottom: none; }
-    .quick-link-item:hover { padding-left: 4px; }
 
-    .ql-icon {
-      width: 34px; height: 34px; border-radius: 8px;
-      background: var(--gold-pale);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    aside p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--muted);
     }
-    .ql-label { font-size: 0.88rem; font-weight: 600; color: var(--forest); }
-    .ql-desc { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
-    .ql-arrow { margin-left: auto; color: var(--muted); flex-shrink: 0; }
+
+    .doclist { list-style: none; }
+
+    .doclist li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .doclist li:last-child { border-bottom: none; }
+
+    .doclist a {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--forest);
+      transition: color 0.15s;
+    }
+    .doclist a:hover { color: var(--accent); text-decoration: underline; }
+
+    .doclist span {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
 
     
 
     /* ── INITIATIVES ── */
+    #initiatives > h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--forest);
+      padding-top: 0.75rem;
+      border-top: 2px solid var(--forest);
+      margin-bottom: 0.5rem;
+    }
+
+    .lead, .muted { color: var(--muted); }
+    .lead { font-size: 0.85rem; margin-bottom: 1.25rem; }
+
     .initiatives-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 3.5rem; }
+    .initiatives-grid > p { grid-column: 1 / -1; }
 
     .initiative-card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.75rem 1.5rem;
-      box-shadow: 0 2px 12px rgba(27,61,47,0.06);
-      transition: box-shadow 0.2s, transform 0.15s;
-    }
-    .initiative-card:hover { box-shadow: 0 6px 24px rgba(27,61,47,0.12); transform: translateY(-2px); }
-
-    .initiative-icon {
-      width: 46px; height: 46px; border-radius: 10px;
-      background: var(--gold-pale);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.25rem;
+      border-radius: 12px; padding: 1.5rem 1.4rem;
+      display: flex; flex-direction: column;
     }
 
     .initiative-card h3 {
       font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 500;
       color: var(--forest); margin-bottom: 0.5rem; line-height: 1.3;
     }
-    .initiative-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+    .initiative-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
     .initiative-status {
       display: inline-flex; align-items: center; gap: 0.35rem;
-      margin-top: 1rem; font-size: 0.72rem; font-weight: 600; color: var(--green);
+      margin-top: auto; padding-top: 1rem;
+      font-size: 0.78rem; font-weight: 600; color: var(--green);
     }
-    .initiative-status::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; }
+    .initiative-status::before { content: ''; width: 7px; height: 7px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
     .initiative-status.pending { color: #b58a1a; }
     .initiative-status.pending::before { background: #b58a1a; }
     .initiative-status.completed { color: var(--muted); }
@@ -672,6 +635,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .two-col { grid-template-columns: 1fr; }
+      
       .officers-grid { grid-template-columns: repeat(2, 1fr); }
       .initiatives-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { grid-template-columns: 1fr 1fr; }
@@ -682,8 +646,7 @@
       nav { display: none; }
       .hamburger-btn { display: flex; }
       .announcements-grid { grid-template-columns: 1fr; }
-      .announcement-card.featured { flex-direction: column; }
-      .announcement-card.featured .announcement-img { width: 100%; min-height: 160px; }
+      .announcement-card { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-8); }
       .officers-grid { grid-template-columns: repeat(2, 1fr); }
       .initiatives-grid { grid-template-columns: 1fr; }
       .cta-banner { flex-direction: column; }
@@ -753,70 +716,49 @@
   <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" aria-label="Welcome">
   <div class="hero-inner">
-    <div class="hero-eyebrow">
-      
-    </div>
-    <h1>Your Voice <em>Shapes</em><br>Our University</h1>
-    <p class="hero-sub">The Student Government Association advocates for every Drew student - championing resources, fostering community, and building a campus we're proud of.</p>
+    <h1>Your voice shapes the University in the Forest.</h1>
+    <p>Every suggestion and concern is reviewed, represented, and acted upon. <br>Send us one with your name or anonymously.</p>
     <div class="hero-actions">
-      <a href="/suggestions" class="btn-hero-primary">
-        <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Submit a Suggestion/Concern
-      </a>
-      <a href="#meetings" class="btn-hero-secondary">
-        <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Meeting Schedule
-      </a>
+      <a href="/suggestions" class="btn">Submit a suggestion or concern</a>
+      <a href="mailto:stugov@drew.edu">Email stugov@drew.edu</a>
     </div>
+    <p class="next" id="nextMeeting">Checking the meeting schedule…</p>
   </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS
 <section class="stats-strip" aria-label="SGA at a glance">
   <div class="stat-item"><div class="stat-num">1,600+</div><div class="stat-label">Students Represented</div></div>
   <div class="stat-item"><div class="stat-num" id="senatorCount">19</div><div class="stat-label">Elected Senator Seats</div></div>
   <div class="stat-item"><div class="stat-num" id="initiativeCount">-</div><div class="stat-label">Active Initiatives</div></div>
   <div class="stat-item"><div class="stat-num">$10K</div><div class="stat-label">Annual Budget</div></div>
   <div class="stat-item"><div class="stat-num">1930s</div><div class="stat-label">Established</div></div>
-</section>
+</section> -->
 
 <!-- MAIN -->
 <main class="page" id="main" tabindex="-1">
 
   <!-- ANNOUNCEMENTS -->
-  <h2 class="section-label">Latest Announcements</h2>
+  <h2 class="section-heading">Latest Announcements</h2>
   <div class="announcements-grid" id="announcementsGrid" aria-busy="true">
-    <div class="announcement-card featured" style="min-height:180px;">
-      <div class="announcement-img" style="width:300px;"></div>
-      <div class="announcement-content" style="gap:0.75rem;">
-        <div style="display:flex;gap:0.5rem;"><div class="skeleton" style="width:50px;height:18px;border-radius:4px;"></div><div class="skeleton" style="width:80px;height:18px;border-radius:4px;"></div></div>
-        <div class="skeleton" style="width:85%;height:22px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:100%;height:13px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:90%;height:13px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:70%;height:13px;border-radius:4px;"></div>
+    <article class="announcement-card featured">
+      <p class="ann-date"><span class="skeleton" style="display:block;width:7rem;height:0.9rem;"></span></p>
+      <div class="announcement-content">
+        <h3><span class="visually-hidden">Loading announcement</span><span class="skeleton" style="display:block;width:55%;height:1.5rem;"></span></h3>
+        <p><span class="skeleton" style="display:block;width:100%;height:0.9rem;margin-top:0.5rem;"></span></p>
       </div>
-    </div>
-    <div class="announcement-card" style="min-height:160px;">
-      <div class="announcement-img" style="height:100px;"></div>
-      <div class="announcement-content" style="gap:0.6rem;">
-        <div class="skeleton" style="width:55%;height:16px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:80%;height:18px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:100%;height:12px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:75%;height:12px;border-radius:4px;"></div>
+      <span class="ann-tag"><span class="skeleton" style="display:block;width:4rem;height:0.85rem;"></span></span>
+    </article>
+    <article class="announcement-card">
+      <p class="ann-date"><span class="skeleton" style="display:block;width:7rem;height:0.9rem;"></span></p>
+      <div class="announcement-content">
+        <h3><span class="visually-hidden">Loading announcement</span><span class="skeleton" style="display:block;width:45%;height:1.2rem;"></span></h3>
+        <p><span class="skeleton" style="display:block;width:90%;height:0.9rem;margin-top:0.5rem;"></span></p>
       </div>
-    </div>
-    <div class="announcement-card" style="min-height:160px;">
-      <div class="announcement-img" style="height:100px;"></div>
-      <div class="announcement-content" style="gap:0.6rem;">
-        <div class="skeleton" style="width:55%;height:16px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:80%;height:18px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:100%;height:12px;border-radius:4px;"></div>
-        <div class="skeleton" style="width:75%;height:12px;border-radius:4px;"></div>
-      </div>
-    </div>
+      <span class="ann-tag"></span>
+    </article>
   </div>
 
   <!-- MEETINGS + QUICK LINKS -->
@@ -840,62 +782,42 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-header">
-        <div class="card-icon">
-          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        </div>
-        <div><h2>Quick Links</h2><p>Resources for Drew students</p></div>
-      </div>
-      <div class="card-body" style="padding: 0.5rem 1.5rem 1rem;">
-        <div class="quick-links-list">
-          <a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div><div class="ql-label">Past Meeting Agendas</div><div class="ql-desc">From the current administration</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          <a href="https://docs.google.com/spreadsheets/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-            <div><div class="ql-label">Budget &amp; Funding</div><div class="ql-desc">The current budget</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          <a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-            <div><div class="ql-label">SGA Constitution</div><div class="ql-desc">Our founding document</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          <a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=sharing" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-            <div><div class="ql-label">SGA Bylaws</div><div class="ql-desc">Our governing regulations</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          <a href="tel:9739368173" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
-            <div><div class="ql-label">Student Concerns Hotline</div><div class="ql-desc">Leave your suggestion or concern on the go.</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          <a href="mailto:stugov@drew.edu" class="quick-link-item">
-            <div class="ql-icon"><svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="ql-label">Contact SGA</div><div class="ql-desc">stugov@drew.edu</div></div>
-            <div class="ql-arrow"><svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></div>
-          </a>
-          
-        </div>
-      </div>
-    </div>
+    <aside>
+      <section>
+        <h2>About SGA</h2>
+        <p>The College of Liberal Arts Student Government has <span id="senatorCountAbout">00</span> elected senator seats for more than 1,600 students, a budget of about $10,000 a year, and has served Drew since the 1930s.</p>
+      </section>
+
+      <section>
+        <h2>Documents</h2>
+        <ul class="doclist">
+          <li><a href="https://drive.google.com/drive/folders/1T37qgyUEZ53HvDT4locyv73HNXFNd2Je?usp=sharing">Past meeting agendas</a><span>From the current administration</span></li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1DptE6QX7fhF6doVmhAb64nZnBTKMe5E9ylrprfOs5sQ/edit?usp=sharing">Budget and funding</a><span>The current budget</span></li>
+          <li><a href="https://docs.google.com/document/d/1ePOLB9iLWt3NL7QNimzh6SgOOHLwK5fAb7POu6TOA8g/edit?usp=sharing">Constitution</a><span>Our founding document</span></li>
+          <li><a href="https://docs.google.com/document/d/1-mA7wpUPetOc50ByQjAG3rkGjD6lw_4qFq27b4Z-Qoo/edit?usp=sharing">Bylaws</a><span>Our governing regulations</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <ul class="doclist">
+          <li><a href="tel:9739368173">973-936-8173</a><span>Student concerns hotline. Leave a suggestion or concern by phone, or by text.</span></li>
+          <li><a href="mailto:stugov@drew.edu">stugov@drew.edu</a><span>Email the SGA</span></li>
+        </ul>
+      </section>
+    </aside>
   </div>
 
  
 
   <!-- INITIATIVES -->
-  <h2 class="section-label" id="initiatives">Current Initiatives</h2>
-  <div class="initiatives-grid" id="initiativesGrid" aria-busy="true">
-    <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
-    <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
-    <div class="skeleton-initiative"><div class="skeleton skeleton-icon"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc"></div><div class="skeleton skeleton-desc short"></div></div>
-  </div>
+  <section id="initiatives">
+    <h2>Current Initiatives</h2>
+    <p class="lead" id="initiativeLead"></p>
+    <div id="initiativesList" class="initiatives-grid" aria-busy="true"><p class="muted">Loading…</p></div>
+  </section>
 
-  <!-- CTA -->
+  <!-- CTA
   <div class="cta-banner">
     <div class="cta-text">
       <h2>Have an Idea or Issue? <em>We Want to Hear It.</em></h2>
@@ -911,7 +833,7 @@
         Email Us Directly
       </a>
     </div>
-  </div>
+  </div> -->
 
 </main>
 
@@ -920,7 +842,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>Drew <span>SGA</span></h3>
-      <p>The Student Government Association of Drew University, serving the student body since the 1930s.</p>
+      <p>The Student Government Association of Drew University, serving the CLA student body.<br><br>Site developed by Atomic Corp. <a href="https://atomiccorp.org/">https://atomiccorp.org/</a><br><br>Not affiliated with the official Drew University site.<br>Photo credit: Thomas Jenkins, C'27</p>
     </div>
     <div class="footer-col">
       <h4>Governance</h4>
@@ -1002,15 +924,6 @@
   }
 
   // ── ICONS + UTILS ────────────────────────────────────────────────────
-  const ICONS = [
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"/></svg>`,
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`,
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
-    `<svg aria-hidden="true" focusable="false" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1b3d2f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
-  ];
-
   const ANN_ICONS = [
     `<svg aria-hidden="true" focusable="false" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
     `<svg aria-hidden="true" focusable="false" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
@@ -1044,11 +957,13 @@
 
   function parseMeetingDate(dateStr) {
     if (!dateStr) return null;
-    // Try direct parse first
-    let d = new Date(dateStr);
+    // "YYYY-MM-DD" parses as UTC midnight, which lands on the previous evening
+    // locally and can drop today's meeting; anchor plain dates to local noon.
+    const s = /^\d{4}-\d{2}-\d{2}$/.test(dateStr) ? dateStr + 'T12:00:00' : dateStr;
+    let d = new Date(s);
     if (!isNaN(d) && d.getFullYear() > 1970) return d;
     // Try "Month DD YYYY" style after stripping commas
-    d = new Date(dateStr.replace(/,/g, ' ').replace(/\s+/g, ' '));
+    d = new Date(s.replace(/,/g, ' ').replace(/\s+/g, ' '));
     return (!isNaN(d) && d.getFullYear() > 1970) ? d : null;
   }
 
@@ -1084,18 +999,15 @@
         ? `<a href="${escHtml(a.link)}" class="ann-link" target="_blank" rel="noopener" aria-label="Read more: ${escHtml(a.title)}">Read more <svg aria-hidden="true" focusable="false" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>`
         : '';
       return `
-        <div class="announcement-card${isFeatured ? ' featured' : ''}">
-          <div class="announcement-img" style="background:${ANN_BG[i % ANN_BG.length]}">${ANN_ICONS[i % ANN_ICONS.length]}</div>
+        <article class="announcement-card${isFeatured ? ' featured' : ''}">
+          <p class="ann-date">${escHtml(dateStr)}</p>
           <div class="announcement-content">
-            <div class="ann-meta">
-              ${tag ? `<span class="ann-tag ${tagClass}">${escHtml(tag)}</span>` : ''}
-              ${dateStr ? `<span class="ann-date">${dateStr}</span>` : ''}
-            </div>
             <h3>${escHtml(a.title)}</h3>
             <p>${escHtml(a.body)}</p>
             ${linkHtml}
           </div>
-        </div>`;
+          <span class="ann-tag">${escHtml(tag)}</span>
+        </article>`;
     }).join('');
   }
 
@@ -1116,6 +1028,8 @@
         <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <p>No upcoming meetings scheduled.</p>
       </div>`;
+      const nextEl = document.getElementById('nextMeeting');
+      if (nextEl) nextEl.textContent = 'No upcoming meetings are scheduled right now.';
       return;
     }
     el.innerHTML = upcoming.map(m => {
@@ -1142,32 +1056,41 @@
           </div>
         </div>`;
     }).join('');
+
+    // Mirror the next meeting into the hero line
+    const n = upcoming[0];
+    const when = new Intl.DateTimeFormat('en-US', {
+      weekday: 'long', month: 'long', day: 'numeric', timeZone: 'America/New_York'
+    }).format(n._date);
+    const nextEl = document.getElementById('nextMeeting');
+    if (nextEl) {
+      nextEl.innerHTML = `Next meeting: <strong>${escHtml(when)}${n.time ? ', ' + escHtml(n.time) : ''}</strong>${n.location ? ', ' + escHtml(n.location) : ''}. <br><a href="#meetings">See the full schedule</a>`;
+    }
   }
 
   // ── RENDER: INITIATIVES ──────────────────────────────────────────────
   function renderInitiatives(rows) {
-    const el = document.getElementById('initiativesGrid');
+    const el = document.getElementById('initiativesList');
+    const lead = document.getElementById('initiativeLead');
+    const stat = document.getElementById('initiativeCount');
     if (!rows.length) {
-      el.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
-        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <p>No active initiatives at this time.</p>
-      </div>`;
-      document.getElementById('initiativeCount').textContent = '0';
+      lead.textContent = '';
+      el.innerHTML = '<p class="muted">No active initiatives right now.</p>';
+      if (stat) stat.textContent = '0';
       return;
     }
-    const active = rows.filter(i => !(i.status || '').toLowerCase().includes('complet'));
-    document.getElementById('initiativeCount').textContent = active.length;
-    el.innerHTML = rows.map((initiative, idx) => {
+    const active = rows.filter(i => !(i.status || '').toLowerCase().includes('complet')).length;
+    lead.textContent = `${active} active ${active === 1 ? 'initiative' : 'initiatives'}.`;
+    if (stat) stat.textContent = active;
+    el.innerHTML = rows.map(initiative => {
       const statusVal = (initiative.status || 'In Progress').trim();
       const statusClass = statusVal.toLowerCase().includes('pending') ? 'pending'
                         : statusVal.toLowerCase().includes('complet') ? 'completed' : '';
-      return `
-        <div class="initiative-card">
-          <div class="initiative-icon">${ICONS[idx % ICONS.length]}</div>
-          <h3>${escHtml(initiative.title)}</h3>
-          <p>${escHtml(initiative.description)}</p>
-          <div class="initiative-status ${statusClass}">${escHtml(statusVal)}</div>
-        </div>`;
+      return `<article class="initiative-card">
+        <h3>${escHtml(initiative.title)}</h3>
+        <p>${escHtml(initiative.description)}</p>
+        <div class="initiative-status ${statusClass}">${escHtml(statusVal)}</div>
+      </article>`;
     }).join('');
   }
 
@@ -1196,23 +1119,27 @@
     } else {
       document.getElementById('meetingsList').innerHTML =
         errorHtml('Could not load meetings: ' + meetings.reason?.message);
+      const nextEl = document.getElementById('nextMeeting');
+      if (nextEl) nextEl.textContent = 'Couldn’t load the meeting schedule.';
     }
 
     // Initiatives
     if (initiatives.status === 'fulfilled') {
       renderInitiatives(initiatives.value);
     } else {
-      document.getElementById('initiativesGrid').innerHTML =
+      document.getElementById('initiativesList').innerHTML =
         errorHtml('Could not load initiatives: ' + initiatives.reason?.message);
     }
 
     // Elected senator seats track the rows listed on the Members page
     if (senators.status === 'fulfilled') {
-      const el = document.getElementById('senatorCount');
-      if (el) el.textContent = senators.value.length;
+      ['senatorCount', 'senatorCountAbout'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = senators.value.length;
+      });
     }
 
-    ['announcementsGrid','meetingsList','initiativesGrid'].forEach(id => {
+    ['announcementsGrid','meetingsList','initiativesList'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.setAttribute('aria-busy', 'false');
     });

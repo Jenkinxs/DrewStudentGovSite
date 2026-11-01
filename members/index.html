@@ -1,606 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="/sgovlogo.ico">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Members - Drew SGA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --forest:    #1b3d2f;
-      --forest-2:  #244d3c;
-      --forest-3:  #2e5e49;
-      --gold:      #c9a84c;
-      --gold-pale: #f0e4c0;
-      --gold-ink:  #7d601f;
-      --gold-dim:  rgba(201,168,76,0.15);
-      --bg:        #f2ede4;
-      --surface:   #faf7f2;
-      --border:    #ddd5c4;
-      --text:      #1a1a18;
-      --muted:     #665e52;
-      --accent:    #3b6e56;
-      --green:     #2a6e47;
-      --red:       #b94040;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members - Drew SGA</title>
+<link rel="icon" type="image/x-icon" href="/sgovlogo.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1b3d2f;
+    --gold:   #c9a84c;
+    --paper:  #f7f8f5;
+    --rule:   #d5d9d0;
+    --ink:    #1d211c;
+    --muted:  #596057;
+    --link:   #1f5a3f;
+    --red:    #a83a3a;
+    --tint:   #dfe6dd;
+  }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Literata', Georgia, serif;
+    line-height: 1.6;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  h1, h2, h3, p, ul { margin: 0; }
+  ul { padding: 0; list-style: none; }
+  a { color: var(--link); text-underline-offset: 0.2em; }
+  a:hover { text-decoration-thickness: 2px; }
+  [id] { scroll-margin-top: 76px; }
 
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
+  /* Accessibility */
+  :focus-visible { outline: 3px solid var(--forest); outline-offset: 2px; }
+  .topbar :focus-visible, .hero :focus-visible, footer :focus-visible { outline-color: #f0e4c0; }
+  .skip-link {
+    position: absolute; left: 0; top: -100px; z-index: 200;
+    background: var(--forest); color: #fff; padding: 0.75rem 1.25rem;
+  }
+  .skip-link:focus { top: 0; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-inner > * { animation: none; } }
 
-    a { color: inherit; text-decoration: none; }
-
-    /* ── ACCESSIBILITY ── */
-    .skip-link {
-      position: absolute; left: 0; top: -100px; z-index: 200;
-      background: var(--forest); color: #fff;
-      padding: 0.75rem 1.25rem; font-size: 0.9rem; font-weight: 700;
-      border-radius: 0 0 6px 0;
-    }
-    .skip-link:focus { top: 0; }
-    .visually-hidden {
-      position: absolute !important; width: 1px; height: 1px;
-      margin: -1px; padding: 0; overflow: hidden;
-      clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-    }
-    a:focus-visible, button:focus-visible, input:focus-visible,
-    select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
-      outline: 3px solid var(--forest); outline-offset: 2px;
-    }
-    .topbar :focus-visible, .hero :focus-visible, .cta-banner :focus-visible,
-    footer :focus-visible { outline-color: var(--gold-pale); }
-    a, button, input, select, textarea, [id] { scroll-margin-top: 76px; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* ── TOP BAR ── */
-    .topbar {
-      background: var(--forest);
-      color: #fff;
-      padding: 0 2rem;
-      min-height: 58px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-      border-bottom: 3px solid var(--gold);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .topbar-logo {
-      font-family: 'Fraunces', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-      text-decoration: none;
-    }
-    .topbar-logo span { color: var(--gold); }
-
-    .topbar-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
-
-    .topbar-sub {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.55);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    nav { margin-left: auto; display: flex; align-items: center; gap: 0.25rem; }
-
-    nav a {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      padding: 0.4rem 0.85rem;
-      border-radius: 6px;
-      transition: background 0.15s, color 0.15s;
-    }
-    nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
-    nav a.active { background: rgba(255,255,255,0.12); color: #fff; }
-
-    .nav-cta {
-      background: var(--gold) !important;
-      color: var(--forest) !important;
-      font-weight: 700 !important;
-      text-align: center;
-      white-space: normal;
-    }
-    .nav-cta:hover { opacity: 0.88; background: var(--gold) !important; }
-
-    /* ── HERO ── */
-    .hero {
-      background-image: url('BC.JPG');
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      padding: 5rem 2rem 4.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0,0,0,0.62);
-      background-image:
-        radial-gradient(ellipse at 75% -10%, rgba(201,168,76,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 10% 110%, rgba(59,110,86,0.3) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0,0,0,0.25);
-      /* Grid overlay disabled by request.
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 40px 40px;
-      */
-      pointer-events: none;
-    }
-
-    .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(201,168,76,0.12);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 20px;
-      padding: 0.35rem 1rem;
-      margin-bottom: 1.5rem;
-      
-    }
-
-    .hero h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2.4rem, 6vw, 3.8rem);
-      font-weight: 500;
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.25rem;
-      text-shadow: 1px 1px #000000
-    }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.92);
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
-    }
-
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      background: var(--gold-pale);
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 2rem;
-      display: flex;
-      justify-content: center;
-    }
-
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 2.5rem;
-      border-right: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
-
-    .stat-num {
-      font-family: 'Fraunces', serif;
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: var(--forest);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-top: 0.25rem;
-    }
-
-    /* ── PAGE ── */
-    .page { max-width: 1100px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
-
-    .section-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-
-    /* ── SKELETON LOADER ── */
-    .skeleton {
-      background: linear-gradient(90deg, var(--border) 25%, #e8e0d0 50%, var(--border) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 6px;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-    /* ── OFFICERS ── */
-    .officers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 3.5rem; }
-
-    .officer-card {
-      min-width: 0;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.5rem 1rem; text-align: center;
-      box-shadow: 0 2px 12px rgba(27,61,47,0.06);
-      transition: box-shadow 0.2s, transform 0.15s;
-    }
-    .officer-card:hover { box-shadow: 0 6px 24px rgba(27,61,47,0.12); transform: translateY(-2px); }
-
-    .officer-avatar {
-      width: 80px; height: 80px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--forest) 0%, var(--accent) 100%);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1rem;
-      font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: #fff;
-      border: 3px solid var(--gold-pale);
-      overflow: hidden;
-    }
-    .officer-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-
-    .officer-name { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--forest); margin-bottom: 0.2rem; overflow-wrap: anywhere; }
-    .officer-title { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-    .officer-email { font-size: 0.73rem; color: var(--accent); margin-top: 0.5rem; }
-
-    /* ── SENATORS ROSTER ── */
-    .senators-roster {
-    display: grid;
-    gap: 1rem;
-    margin-bottom: 3.5rem;
-    }
-
-    .senator-card {
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--forest);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: normal;
+    padding: 0 2rem;
+    min-height: 58px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 18px;
-    box-shadow: 0 2px 16px rgba(27,61,47,0.07);
+    border-bottom: 3px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .topbar-logo span { color: var(--gold); }
+
+  .topbar-divider { width: 1px; height: 22px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+
+  .topbar-sub {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  nav { margin-left: auto; display: flex; align-items: center; gap: 0.25rem; }
+
+  nav a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--forest) !important;
+    font-weight: 700 !important;
+    text-align: center;
+    white-space: normal;
+  }
+  .nav-cta:hover { opacity: 0.88; background: var(--gold) !important; }
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-left: auto;
+    z-index: 101;
+  }
+
+  .hamburger-icon { display: flex; flex-direction: column; gap: 5px; }
+
+  .hamburger-icon span {
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-btn.active .hamburger-icon span:nth-child(1) { transform: rotate(45deg) translateY(12px); }
+  .hamburger-btn.active .hamburger-icon span:nth-child(2) { opacity: 0; }
+  .hamburger-btn.active .hamburger-icon span:nth-child(3) { transform: rotate(-45deg) translateY(-12px); }
+
+  .mobile-nav {
+    display: none;
+    position: absolute;
+    top: 58px;
+    left: 0;
+    right: 0;
+    background: var(--forest);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: normal;
+    flex-direction: column;
+    border-bottom: 3px solid var(--gold);
+    max-height: calc(100vh - 58px);
+    overflow-y: auto;
+    z-index: 99;
+  }
+
+  .mobile-nav.active { display: flex; }
+
+  .mobile-nav a {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .mobile-nav a:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .mobile-nav a.nav-cta {
+    background: var(--gold);
+    color: var(--forest);
+    margin: 0.5rem 1rem;
+    border-radius: 6px;
+    border-bottom: none;
+    text-align: center;
+  }
+
+  .mobile-nav a.nav-cta:hover {
+    opacity: 0.88;
+    background: var(--gold);
+  }
+
+  /* Hero (original design) */
+  .hero {
+    background-image: url('BC.JPG');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 5rem 2rem 4.5rem;
+    text-align: center;
     position: relative;
-    transition: background 0.15s, transform 0.15s;
-    }
-    .senator-card:hover {
-    background: #f7f2e8;
-    transform: translateY(-1px);
-    }
-    .senator-card::before {
+    overflow: hidden;
+    line-height: normal;
+  }
+  .hero::before {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--gold);
-    border-radius: 0 999px 999px 0;
-    opacity: 0;
-    transition: opacity 0.15s;
-    }
-    .senator-card:hover::before { opacity: 1; }
+    inset: 0;
+    background-color: rgba(0,0,0,0.62);
+    background-image:
+      radial-gradient(ellipse at 75% -10%, rgba(201,168,76,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 110%, rgba(59,110,86,0.3) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.25);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+    text-shadow: 1px 1px #000000;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.92);
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-inner > * { animation: fadeUp 0.6s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.25s; }
 
-    .senator-avatar {
-    width: 62px;
-    height: 62px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--forest) 0%, var(--accent) 100%);
+  /* Page */
+  .page { max-width: 1100px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2rem) 4rem; }
+  .page section { margin-top: 2.5rem; }
+  .page h2 {
+    font-size: 1.35rem; line-height: 1.3; font-weight: 700; color: var(--forest);
+    padding-top: 0.75rem; border-top: 2px solid var(--forest); margin-bottom: 0.5rem;
+  }
+  .lead { color: var(--muted); max-width: 62ch; margin-bottom: 1.25rem; }
+  .muted { color: var(--muted); }
+  .error { color: var(--red); font-weight: 600; }
+
+  .avatar {
+    width: 4.5rem; height: 4.5rem; border-radius: 50%; flex-shrink: 0; overflow: hidden;
+    background: var(--tint); color: var(--forest); font-weight: 700; font-size: 1.2rem;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: #fff;
-    border: 2px solid var(--gold-pale);
-    overflow: hidden;
-    flex-shrink: 0;
-    }
-    .senator-avatar img {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
-    }
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-    .senator-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    min-width: 0;
-    flex: 1;
-    }
-    .senator-name {
-    font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600;
-    color: var(--forest); line-height: 1.2;
-    }
-    .senator-title {
-    font-size: 0.86rem; color: var(--muted); line-height: 1.4;
-    margin-top: 0.15rem;
-    }
-    .senator-email {
-    margin-left: auto;
-    font-size: 0.82rem; color: var(--accent); font-weight: 600;
-    white-space: nowrap;
-    border: 1px solid rgba(59,110,86,0.18);
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
-    background: rgba(59,110,86,0.06);
-    transition: background 0.15s, border-color 0.15s;
-    align-self: center;
-    }
-    .senator-email:hover {
-    background: rgba(59,110,86,0.12);
-    border-color: var(--accent);
-    }
+  /* Executive board */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: 1rem; }
+  .cards > p, .roster > p { grid-column: 1 / -1; }
+  .card { min-width: 0; background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 1.25rem; }
+  .card .avatar { margin-bottom: 0.9rem; }
+  .card h3 { font-size: 1.1rem; line-height: 1.35; overflow-wrap: anywhere; }
+  .role { font-size: 0.9rem; color: var(--muted); }
+  .card a { display: inline-block; margin-top: 0.5rem; font-size: 0.9rem; overflow-wrap: anywhere; }
 
-    /* ── EMPTY / ERROR STATE ── */
-    .empty-state {
-      text-align: center; padding: 2.5rem 1rem;
-      color: var(--muted); font-size: 0.88rem;
-    }
-    .empty-state svg { margin-bottom: 0.75rem; opacity: 0.35; }
+  /* Senators */
+  .roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); gap: 0 3rem; }
+  .member { display: flex; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+  .member .avatar { width: 3rem; height: 3rem; font-size: 1rem; }
+  .member h3 { font-size: 1rem; line-height: 1.35; }
+  .member a { font-size: 0.9rem; overflow-wrap: anywhere; }
+  .who { min-width: 0; }
 
-    .error-state {
-      display: flex; align-items: center; gap: 0.75rem;
-      background: #fdeaea; border: 1px solid rgba(185,64,64,0.2);
-      border-radius: 8px; padding: 1rem 1.25rem;
-      font-size: 0.83rem; color: var(--red);
-    }
+  /* ── FOOTER ── */
+  footer {
+    font-family: 'Plus Jakarta Sans', sans-serif; line-height: normal;
+    background: var(--forest); color: rgba(255,255,255,0.6);
+    padding: 3rem 2rem 2rem; border-top: 3px solid var(--gold);
+  }
+  footer a { color: rgba(255,255,255,0.6); }
 
-    /* ── SECTION INTRO ── */
-    .section-intro {
-      margin-bottom: 2rem;
-    }
-    .section-intro h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.75rem;
-      font-weight: 500;
-      color: var(--forest);
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    .section-intro h2 em { font-style: italic; color: var(--gold-ink); }
-    .section-intro p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 600px;
-    }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 2.5rem; margin-bottom: 2.5rem;
+  }
 
-    /* ── DIVIDER ── */
-    .section-gap { margin-top: 4rem; }
+  .footer-brand h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .footer-brand h3 span { color: var(--gold); }
+  .footer-brand p { font-size: 0.8rem; line-height: 1.65; max-width: 220px; }
 
-    /* ── CTA BANNER ── */
-    .cta-banner {
-      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-3) 100%);
-      border-radius: 16px; padding: 3rem 2.5rem;
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-      gap: 2rem; margin-top: 1rem; margin-bottom: 3.5rem;
-      position: relative; overflow: hidden;
-    }
-    .cta-banner::before {
-      content: ''; position: absolute; right: -60px; top: -60px;
-      width: 280px; height: 280px; border-radius: 50%;
-      background: rgba(201,168,76,0.12); pointer-events: none;
-    }
+  .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-col ul li a { display: inline-block; padding: 0.2rem 0; font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+  .footer-col ul li a:hover { color: #fff; }
 
-    .cta-text { position: relative; z-index: 1; }
-    .cta-text h2 { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0.6rem; line-height: 1.2; }
-    .cta-text h2 em { color: var(--gold); font-style: italic; }
-    .cta-text p { font-size: 0.9rem; color: rgba(255,255,255,0.82); max-width: 400px; line-height: 1.65; }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.73rem; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.75); transition: color 0.15s; }
+  .footer-bottom a:hover { color: #fff; }
 
-    .cta-actions { display: flex; gap: 0.75rem; flex-shrink: 0; flex-wrap: wrap; position: relative; z-index: 1; }
-
-    .btn-primary {
-      background: var(--gold); color: var(--forest); border: none;
-      border-radius: 8px; padding: 0.8rem 1.75rem;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 700;
-      cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: opacity 0.15s, transform 0.1s;
-    }
-    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.1); color: #fff;
-      border: 1.5px solid rgba(255,255,255,0.25);
-      border-radius: 8px; padding: 0.8rem 1.5rem;
-      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
-      cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: background 0.15s;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.18); }
-
-    /* ── FOOTER ── */
-    footer { background: var(--forest); color: rgba(255,255,255,0.6); padding: 3rem 2rem 2rem; border-top: 3px solid var(--gold); }
-
-    .footer-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 2.5rem; margin-bottom: 2.5rem;
-    }
-
-    .footer-brand h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
-    .footer-brand h3 span { color: var(--gold); }
-    .footer-brand p { font-size: 0.8rem; line-height: 1.65; max-width: 220px; }
-
-    .footer-col h4 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
-    .footer-col ul li a { display: inline-block; padding: 0.2rem 0; font-size: 0.83rem; color: rgba(255,255,255,0.6); transition: color 0.15s; }
-    .footer-col ul li a:hover { color: #fff; }
-
-    .footer-bottom {
-      max-width: 1100px; margin: 0 auto;
-      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.73rem; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .footer-bottom a { color: rgba(255,255,255,0.75); transition: color 0.15s; }
-    .footer-bottom a:hover { color: #fff; }
-
-    /* ── HAMBURGER MENU ── */
-    .hamburger-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      font-size: 1.5rem;
-      width: 44px;
-      height: 44px;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin-left: auto;
-      z-index: 101;
-    }
-
-    .hamburger-icon {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .hamburger-icon span {
-      width: 24px;
-      height: 2px;
-      background: #fff;
-      display: block;
-      transition: all 0.3s ease;
-    }
-
-    .hamburger-btn.active .hamburger-icon span:nth-child(1) {
-      transform: rotate(45deg) translateY(12px);
-    }
-
-    .hamburger-btn.active .hamburger-icon span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-btn.active .hamburger-icon span:nth-child(3) {
-      transform: rotate(-45deg) translateY(-12px);
-    }
-
-    .mobile-nav {
-      display: none;
-      position: absolute;
-      top: 58px;
-      left: 0;
-      right: 0;
-      background: var(--forest);
-      flex-direction: column;
-      border-bottom: 3px solid var(--gold);
-      max-height: calc(100vh - 58px);
-      overflow-y: auto;
-      z-index: 99;
-    }
-
-    .mobile-nav.active {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      padding: 1rem 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.8);
-      font-weight: 500;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .mobile-nav a:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-    }
-
-    .mobile-nav a.nav-cta {
-      background: var(--gold);
-      color: var(--forest);
-      margin: 0.5rem 1rem;
-      border-radius: 6px;
-      border-bottom: none;
-      text-align: center;
-    }
-
-    .mobile-nav a.nav-cta:hover {
-      opacity: 0.88;
-      background: var(--gold);
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-    .hero-inner > * { animation: fadeUp 0.6s ease both; }
-    .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
-    .hero-inner > *:nth-child(2) { animation-delay: 0.15s; }
-    .hero-inner > *:nth-child(3) { animation-delay: 0.25s; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .senator-card { flex-direction: column; align-items: flex-start; padding: 1rem 1rem; }
-      .senator-email { width: 100%; margin-left: 0; }
-      .senator-card::before { display: none; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 750px) {
-      .topbar-sub, .topbar-divider { display: none; }
-      nav { display: none; }
-      .hamburger-btn { display: flex; }
-      .cta-banner { flex-direction: column; }
-      .stats-strip { flex-wrap: wrap; gap: 1rem; }
-      .stat-item { border-right: none; padding: 0 1rem; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .hero { padding: 3.5rem 1.25rem 3rem; }
-      .page { padding: 2rem 1rem 3rem; }
-      .senator-card { padding: 1rem 1rem; }
-      .senator-title { display: block; }
-      .officer-card { padding: 0.9rem 1rem; }
-      .officer-email { display: none; }
-    }
-
-    @media (max-width: 480px) {
-      .officers-grid { grid-template-columns: 1fr; }
-      .officer-info { min-width: 0; }
-      .officer-name { overflow-wrap: anywhere; }
-    }
-  </style>
+  @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 750px) {
+    .topbar-sub, .topbar-divider { display: none; }
+    nav { display: none; }
+    .hamburger-btn { display: flex; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -613,8 +328,8 @@
   <div class="topbar-sub">Student Government Association</div>
   <nav aria-label="Primary">
     <a href="/history">History</a>
-    <a href="/members">Members</a>
-    <a href="/#initiatives">Initiatives    </a>
+    <a href="/members" aria-current="page">Members</a>
+    <a href="/#initiatives">Initiatives</a>
     <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
   </nav>
   <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Menu"
@@ -630,62 +345,37 @@
 <!-- MOBILE NAVIGATION -->
 <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
   <a href="/history">History</a>
-  <a href="/members">Members</a>
+  <a href="/members" aria-current="page">Members</a>
   <a href="/#initiatives">Initiatives</a>
   <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" aria-label="About the senate" style="left: -1px;">
+<section class="hero" aria-label="About the senate">
   <div class="hero-inner">
-    
     <h1>Meet the <em>Senate</em><br></h1>
     <p class="hero-sub">Our Executives and Senators work year-round to represent your voice, shape campus policy, and build a stronger Drew community.</p>
   </div>
 </section>
 
-
-
-<!-- MAIN -->
 <main class="page" id="main" tabindex="-1">
 
-  <!-- EXECUTIVE BOARD -->
-  <div class="section-intro">
-    <h2>Executive Board <em></em></h2>
-    <p>The executive board leads the SGA's day-to-day operations, chairs committees, and serves as a liaison between the student body and Drew University administration.</p>
-  </div>
-  <p class="section-label">Executive Officers</p>
-  <div class="officers-grid" id="officersGrid" aria-busy="true">
-    <!-- Skeleton loaders -->
-    <div class="officer-card"><div class="officer-avatar skeleton" style="border:none;background:var(--border);flex-shrink:0;"></div><div class="officer-info"><div class="skeleton" style="height:14px;width:55%;margin-bottom:6px;border-radius:4px;"></div><div class="skeleton" style="height:11px;width:35%;border-radius:4px;"></div></div></div>
-    <div class="officer-card"><div class="officer-avatar skeleton" style="border:none;background:var(--border);flex-shrink:0;"></div><div class="officer-info"><div class="skeleton" style="height:14px;width:55%;margin-bottom:6px;border-radius:4px;"></div><div class="skeleton" style="height:11px;width:35%;border-radius:4px;"></div></div></div>
-    <div class="officer-card"><div class="officer-avatar skeleton" style="border:none;background:var(--border);flex-shrink:0;"></div><div class="officer-info"><div class="skeleton" style="height:14px;width:55%;margin-bottom:6px;border-radius:4px;"></div><div class="skeleton" style="height:11px;width:35%;border-radius:4px;"></div></div></div>
-  </div>
+  <section id="executive-board">
+    <h2>Executive board</h2>
+    <p class="lead">The executive board leads the SGA’s day-to-day operations, chairs committees, and serves as a liaison between the student body and Drew University administration.</p>
+    <div class="cards" id="officersGrid" aria-busy="true"><p class="muted">Loading…</p></div>
+  </section>
 
-  <!-- SENATORS -->
-  <div class="section-gap">
-    <div class="section-intro">
-      <h2>Student Senators <em></em></h2>
-      <p>Senators represent the diverse voices of the Drew student body across residential, commuter, class-year, and affinity constituencies. Reach out to your senator to bring your concerns to the floor.</p>
-    </div>
-    <p class="section-label">Student Senators</p>
-    <div class="senators-roster" id="senatorsGrid" aria-busy="true"></div>
-  </div>
+  <section id="senators">
+    <h2>Student senators</h2>
+    <p class="lead">Senators represent the diverse voices of the Drew student body across residential, commuter, class-year, and affinity constituencies. Reach out to them!</p>
+    <div class="roster" id="senatorsGrid" aria-busy="true"><p class="muted">Loading…</p></div>
+  </section>
 
-  <!-- CTA -->
-  <div class="cta-banner">
-    <div class="cta-text">
-      <h2>Want to Get Involved? <em>Join Us.</em></h2>
-      <p>SGA elections are held each spring. In the meantime, attend a general body meeting, submit a suggestion, or reach out to any member of the executive board directly.</p>
-    </div>
-    
-    <div class="cta-actions">
-      <a href="mailto:stugov@drew.edu" class="btn-secondary">
-        <svg aria-hidden="true" focusable="false" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Email Us Directly
-      </a>
-    </div>
-  </div>
+  <section id="get-involved">
+    <h2>Get involved</h2>
+    <p class="lead">SGA elections are held regularly. In the meantime, <a href="/#meetings">attend a general body meeting</a>, <a href="/suggestions">submit a suggestion</a>, or reach out to any member of the senate directly. You can also email <a href="mailto:stugov@drew.edu">stugov@drew.edu</a>.</p>
+  </section>
 
 </main>
 
@@ -694,7 +384,7 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>Drew <span>SGA</span></h3>
-      <p>The Student Government Association of Drew University, serving the student body since the 1930s.</p>
+      <p>The Student Government Association of Drew University, serving the CLA student body.<br><br>Site developed by Atomic Corp. <a href="https://atomiccorp.org/">https://atomiccorp.org/</a><br><br>Not affiliated with the official Drew University site.<br>Photo credit: Thomas Jenkins, C'27</p>
     </div>
     <div class="footer-col">
       <h4>Governance</h4>
@@ -709,7 +399,7 @@
       <ul><li><a href="mailto:stugov@drew.edu">stugov@drew.edu</a></li><li><a href="https://www.facebook.com/duclasga/">Facebook</a></li><li><a href="https://www.instagram.com/duclasga/">Instagram</a></li><li><a href="https://drew.edu/campus-life/campus-life-student-affairs/" target="_blank">Student Affairs</a></li></ul>
     </div>
   </div>
- <div class="footer-bottom">
+  <div class="footer-bottom">
     <span> <span id="yr"></span> Drew University · 36 Madison Ave, Madison, NJ 07940</span>
     <span><a href="https://drew.edu/academic/student-resources/center-for-academic-excellence/office-of-accessibility-resources/">Accessibility</a> · <a href="https://drew.edu/privacy-policy/">Privacy</a> · <a href="https://drew.edu" target="_blank">drew.edu</a></span>
   </div>
@@ -718,136 +408,14 @@
 <div id="liveStatus" class="visually-hidden" role="status" aria-live="polite"></div>
 
 <script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
-
-  // ── SHEETS API HELPER ────────────────────────────────────────────────
-  async function fetchSheet(tabName) {
-    const range = `${tabName}!A:Z`;
-    const url = `https://sgovsite.t-ra-jenkins3.workers.dev/?range=${encodeURIComponent(range)}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err?.error?.message || `HTTP ${res.status} fetching tab "${tabName}"`);
-    }
-    const json = await res.json();
-    const rows = json.values || [];
-    if (rows.length < 2) return [];
-    const headers = rows[0].map(h => h.trim().toLowerCase());
-    return rows.slice(1)
-      .filter(r => r.some(cell => cell.trim() !== ''))
-      .map(r => {
-        const obj = {};
-        headers.forEach((h, i) => { obj[h] = (r[i] || '').trim(); });
-        return obj;
-      });
-  }
-
-  // ── UTILS ────────────────────────────────────────────────────────────
-  function escHtml(str) {
-    return String(str || '')
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  function getInitials(name) {
-    if (!name) return '?';
-    return name.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-  }
-
-  function errorHtml(msg) {
-    return `<div class="error-state" role="alert" style="grid-column:1/-1;">
-      <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-      ${escHtml(msg)}
-    </div>`;
-  }
-
-  // ── RENDER: OFFICERS (horizontal profile rows) ───────────────────────
-  function renderOfficers(rows, gridId) {
-    const el = document.getElementById(gridId);
-    if (!rows.length) {
-      el.innerHTML = `<div class="empty-state" style="padding:2rem 1.75rem;">
-        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        <p>No officers to display at this time.</p>
-      </div>`;
-      return;
-    }
-    el.innerHTML = rows.map(p => {
-      const initials = getInitials(p.name);
-      const avatarInner = p.image_url
-        ? `<img src="${escHtml(p.image_url)}" alt="" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
-        : escHtml(initials);
-      return `
-        <div class="officer-card">
-          <div class="officer-avatar">${avatarInner}</div>
-          <div class="officer-info">
-            <h3 class="officer-name">${escHtml(p.name)}</h3>
-            <div class="officer-title">${escHtml(p.title)}</div>
-          </div>
-          ${p.email ? `<a class="officer-email" href="mailto:${escHtml(p.email)}">${escHtml(p.email)}</a>` : ''}
-        </div>`;
-    }).join('');
-  }
-
-  // ── RENDER: SENATORS (roster cards) ─────────────────────────────
-  function renderSenators(rows, gridId) {
-    const el = document.getElementById(gridId);
-    if (!rows.length) {
-      el.innerHTML = `<div class="empty-state" style="padding:2rem 1.75rem;">
-        <svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        <p>No senators to display at this time.</p>
-      </div>`;
-      return;
-    }
-    el.innerHTML = rows.map(p => {
-      const initials = getInitials(p.name);
-      const avatarInner = p.image_url
-        ? `<img src="${escHtml(p.image_url)}" alt="" onerror="this.parentElement.textContent='${escHtml(initials)}'">`
-        : escHtml(initials);
-      return `
-        <div class="senator-card">
-          <div class="senator-avatar">${avatarInner}</div>
-          <div class="senator-details">
-            <h3 class="senator-name">${escHtml(p.name)}</h3>
-            <div class="senator-title">${escHtml(p.title)}</div>
-          </div>
-          ${p.email ? `<a class="senator-email" href="mailto:${escHtml(p.email)}">${escHtml(p.email)}</a>` : ''}
-        </div>`;
-    }).join('');
-  }
-
-  // ── INIT ─────────────────────────────────────────────────────────────
-  async function init() {
-    const [officers, senators] = await Promise.allSettled([
-      fetchSheet('Officers'),
-      fetchSheet('Senators'),
-    ]);
-
-    if (officers.status === 'fulfilled') {
-      renderOfficers(officers.value, 'officersGrid');
-    } else {
-      document.getElementById('officersGrid').innerHTML =
-        errorHtml('Could not load officers: ' + officers.reason?.message);
-    }
-
-    if (senators.status === 'fulfilled') {
-      renderSenators(senators.value, 'senatorsGrid');
-    } else {
-      document.getElementById('senatorsGrid').innerHTML +=
-        errorHtml('Could not load senators: ' + senators.reason?.message);
-    }
-
-    ['officersGrid','senatorsGrid'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.setAttribute('aria-busy', 'false');
-    });
-    document.getElementById('liveStatus').textContent = 'Officers and senators updated.';
-  }
-  init();
+  // Sheet tabs: Officers (name, title, email, image_url), Senators (name, title, email, image_url)
+  const $ = id => document.getElementById(id);
+  $('yr').textContent = new Date().getFullYear();
 
   // ── HAMBURGER MENU ───────────────────────────────────────────────
   function toggleMobileNav() {
-    const btn = document.getElementById('hamburgerBtn');
-    const nav = document.getElementById('mobileNav');
+    const btn = $('hamburgerBtn');
+    const nav = $('mobileNav');
     const open = btn.getAttribute('aria-expanded') !== 'true';
     btn.classList.toggle('active', open);
     nav.classList.toggle('active', open);
@@ -857,11 +425,84 @@
   // Close mobile nav when a link is clicked
   document.querySelectorAll('.mobile-nav a').forEach(link => {
     link.addEventListener('click', () => {
-      document.getElementById('hamburgerBtn').classList.remove('active');
-      document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
-      document.getElementById('mobileNav').classList.remove('active');
+      $('hamburgerBtn').classList.remove('active');
+      $('hamburgerBtn').setAttribute('aria-expanded', 'false');
+      $('mobileNav').classList.remove('active');
     });
   });
+
+  function esc(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  const note = msg => `<p class="muted">${esc(msg)}</p>`;
+  const fail = msg => `<p class="error" role="alert">${esc(msg)}</p>`;
+
+  // Fetches a sheet tab and returns rows as objects keyed by the lowercase header row.
+  async function fetchSheet(tabName) {
+    const range = `${tabName}!A:Z`;
+    const res = await fetch(`https://sgovsite.t-ra-jenkins3.workers.dev/?range=${encodeURIComponent(range)}`);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err?.error?.message || `HTTP ${res.status} fetching tab "${tabName}"`);
+    }
+    const rows = (await res.json()).values || [];
+    if (rows.length < 2) return [];
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+    return rows.slice(1)
+      .filter(r => r.some(cell => cell.trim() !== ''))
+      .map(r => Object.fromEntries(headers.map((h, i) => [h, (r[i] || '').trim()])));
+  }
+
+  function initials(name) {
+    if (!name) return '?';
+    return name.split(' ').filter(Boolean).map(n => n[0]).join('').toUpperCase().substring(0, 2);
+  }
+
+  function avatar(p) {
+    const ini = esc(initials(p.name));
+    const inner = p.image_url
+      ? `<img src="${esc(p.image_url)}" alt="" onerror="this.parentElement.textContent='${ini}'">`
+      : ini;
+    return `<div class="avatar">${inner}</div>`;
+  }
+
+  const email = p => p.email ? `<a href="mailto:${esc(p.email)}">${esc(p.email)}</a>` : '';
+
+  function renderOfficers(rows) {
+    $('officersGrid').innerHTML = !rows.length ? note('No officers to display right now.') : rows.map(p => `
+      <article class="card">
+        ${avatar(p)}
+        <h3>${esc(p.name)}</h3>
+        <p class="role">${esc(p.title)}</p>
+        ${email(p)}
+      </article>`).join('');
+  }
+
+  function renderSenators(rows) {
+    $('senatorsGrid').innerHTML = !rows.length ? note('No senators to display right now.') : rows.map(p => `
+      <article class="member">
+        ${avatar(p)}
+        <div class="who">
+          <h3>${esc(p.name)}</h3>
+          <p class="role">${esc(p.title)}</p>
+          ${email(p)}
+        </div>
+      </article>`).join('');
+  }
+
+  async function init() {
+    const [officers, senators] = await Promise.allSettled([fetchSheet('Officers'), fetchSheet('Senators')]);
+    const show = (result, id, render, what) => {
+      if (result.status === 'fulfilled') render(result.value);
+      else $(id).innerHTML = fail(`Couldn’t load ${what}: ${result.reason?.message}`);
+      $(id).setAttribute('aria-busy', 'false');
+    };
+    show(officers, 'officersGrid', renderOfficers, 'officers');
+    show(senators, 'senatorsGrid', renderSenators, 'senators');
+    $('liveStatus').textContent = 'Officers and senators updated.';
+  }
+  init();
 </script>
 
 </body>
