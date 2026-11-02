@@ -590,7 +590,7 @@
     .mobile-nav {
       display: none;
       position: absolute;
-      top: 58px;
+      top: calc(100% + 3px);
       left: 0;
       right: 0;
       background: var(--forest);
@@ -706,15 +706,13 @@
       <span></span>
     </span>
   </button>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="/history">History</a>
+    <a href="/members">Members</a>
+    <a href="/#initiatives">Initiatives</a>
+    <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
+  </nav>
 </header>
-
-<!-- MOBILE NAVIGATION -->
-<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
-  <a href="/history">History</a>
-  <a href="/members">Members</a>
-  <a href="/#initiatives">Initiatives</a>
-  <a href="/suggestions" class="nav-cta">Submit Suggestion/Concern</a>
-</nav>
 
 <section class="hero" aria-label="Welcome">
   <div class="hero-inner">
